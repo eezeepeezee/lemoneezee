@@ -1,0 +1,83 @@
+{ 
+  "colors": { 
+    "base": {
+      "white": "#ffffff",
+      "black": "#0b0b0b"
+    },    
+    "baseAdjustSteps": 10,
+    "schemes": {        
+      "default": {
+          "brand":       "#7700ff",
+          "accent":      "#ffd800",
+          "success":     "#18cc49",
+          "warning":     "#dae21e",
+          "danger":      "#e80f0f",
+          "info":        "#0080ff",
+          "interactive": "#178ee5"    
+      },
+      "dyss": {
+          "brand":       "red",
+          "accent":      "blue",
+          "success":     "#18cc49",
+          "warning":     "#dae21e",
+          "danger":      "#e80f0f",
+          "info":        "#0080ff",
+          "interactive": "#178ee5"           
+      }
+    }, 
+    "schemesAdjustSteps": 5,    
+    "fallback": "rgba(77, 222, 133, 0.5)",  
+    "metaThemeColor": "#dee600", 
+    "colorGuides": "#ff0000"
+  },
+  "grid": {
+    "columns": 16,
+    "breakpoints": {
+      "xs": 0,
+      "sm": 576,
+      "md": 768,
+      "lg": 992,
+      "xl": 1200
+    },  
+    "breakpointsUnit": "px",  
+    "gutters": {
+      "wrapper":    "(xs: 16px, lg: 32px)",
+      "container":  false,
+      "row":        false,
+      "col":        false
+    },
+    "fixWrapperWidth": "(xl)",  
+    "rotateBackMap": false 
+  }, 
+  "spacers": {
+    "spacer": "8px", 
+    "spacerMap": {
+      "a": "(xs: 1)",
+      "b": "(xs: 2, sm: 3)",
+      "c": "(xs: 4)",
+      "d": "(xs: 6)",
+      "e": "(xs: 10)"
+    },         
+    "defaultMarginY": {
+      "container":  false,
+      "row":        false,
+      "col":        "b"
+    },    
+    "defaultColPadding": false
+  },
+  "typography": {
+    "fontsInclude": {
+      "BitterRegular":  400, 
+      "BitterItalic":   400
+    }, 
+    "fontsGoogle": {
+      "PT Mono": "https://fonts.googleapis.com/css?family=PT+Mono&display=swap"
+    }, 
+    "fontMain":       "PT Mono",
+    "fontStyle":      "monospace",
+    "htmlFontSize":   "16px",
+    "fontSizeBase":   "1rem",
+    "lineHeightBase": 1.5,
+    "fontWeightBase": "normal"
+  }
+}

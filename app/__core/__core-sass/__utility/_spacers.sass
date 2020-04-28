@@ -1,0 +1,98 @@
+/* *
+ *
+ * Utility classes for margins and paddings, trying to base them on size system
+ *
+ * */
+
+/* Zero margins */
+  
+.mx-0
+  margin-left: 0 !important
+  margin-right: 0 !important
+
+.my-0
+  margin-top: 0 !important
+  margin-bottom: 0 !important
+  
+.mt-0
+  margin-top: 0 !important
+  
+.mb-0
+  margin-bottom: 0 !important
+
+.ml-0
+  margin-left: 0 !important
+
+.mr-0
+  margin-right: 0 !important
+  
+.m-0
+  margin: 0 !important
+  
+  
+/* Set of margins according to __global/_spacers.sass */
+
+@each $spacer-name, $spacer-value in $map-spacers
+  .mx-#{$spacer-name}
+    +margin($spacer-name, x)
+  .my-#{$spacer-name}
+    +margin($spacer-name, y)
+  .mt-#{$spacer-name}
+    +margin($spacer-name, t)
+  .mb-#{$spacer-name}
+    +margin($spacer-name, b)
+  .ml-#{$spacer-name}
+    +margin($spacer-name, l)    
+  .mr-#{$spacer-name}
+    +margin($spacer-name, r)
+  .m-#{$spacer-name}
+    +margin($spacer-name)
+
+  
+/* Zero paddings */
+  
+.px-0
+  padding-left: 0 !important
+  padding-right: 0 !important
+
+.py-0
+  padding-top: 0 !important
+  padding-bottom: 0 !important
+  
+.pt-0
+  padding-top: 0 !important
+  
+.pb-0
+  padding-bottom: 0 !important
+
+.pl-0
+  padding-left: 0 !important
+
+.pr-0
+  padding-right: 0 !important
+  
+.p-0
+  padding: 0 !important
+  
+  
+/* Set of paddings according to __global/_spacers.sass */
+
+@each $spacer-name, $spacer-value in $map-spacers
+  .pst-#{$spacer-name}
+    +padding($spacer-name, stretch)
+  .psq-#{$spacer-name}
+    +padding($spacer-name, squish)
+  .px-#{$spacer-name}
+    +padding($spacer-name, x)
+  .py-#{$spacer-name}
+    +padding($spacer-name, y)
+  .pt-#{$spacer-name}
+    +padding($spacer-name, t)
+  .pb-#{$spacer-name}
+    +padding($spacer-name, b)
+  .pl-#{$spacer-name}
+    +padding($spacer-name, l)    
+  .pr-#{$spacer-name}
+    +padding($spacer-name, r)
+  .p-#{$spacer-name}
+    +padding($spacer-name)

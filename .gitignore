@@ -1,0 +1,5 @@
+node_modules/
+app/assets/css/maps/
+app/assets/js/maps/
+build/
+readme/

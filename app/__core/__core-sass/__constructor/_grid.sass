@@ -1,0 +1,417 @@
+/* *
+ *
+ * Constructing basic css classes for using as a grid.
+ * '.wrapper' element is vital, and then all layout parts you want to be based on grid 
+ * should be used with '.container' > '.row' > '.col-*-*'.
+ *
+ * */
+
+/* Including Google Fonts or other url-based fonts */
+
+@each $font-name, $font-link in $fonts-google
+  @import url('#{$font-link}')
+
+
+/* Map for callback on 'font-family'. Used in body and may be used anywhere else */
+
+$map-font-types: ('sans-serif': "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Ubuntu, Arial", 'serif': "Cambria, 'Hoefler Text', Utopia, 'Liberation Serif', 'Nimbus Roman No9 L Regular', Times, 'Times New Roman',", 'monospace': "Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier");
+
+
+/* Included fonts */
+
+@each $font, $font-weight in $fonts-include
+  @font-face
+    font-family: $font
+    src: url(../fonts/#{$font}/#{$font}.woff2) format('woff2')
+    src: url(../fonts/#{$font}/#{$font}.woff) format('woff')
+    font-weight: $font-weight
+    font-stretch: normal
+    font-display: swap
+
+
+/* Basic settings. class 'body.no-scroll' is to prevent scrolling on preloader or modals */
+
+*, 
+*:before, 
+*:after
+  box-sizing: inherit
+
+html
+  box-sizing: border-box
+  height: 100%
+  overflow-y: scroll
+  font-size: $html-font-size
+  -webkit-text-size-adjust: 100%
+  -webkit-tap-highlight-color: none
+  
+  // &.no-scroll
+    // overflow-y: scroll
+    
+body
+  #{--window-height}: 100vh
+
+body
+  min-width: 320px
+  height: 100%
+  min-height: 100%
+  margin: 0
+  font-family: "#{$font-main}", #{map-get($map-font-types, $font-style)}, $font-style
+  font-weight: $font-weight-base
+  font-size: $font-size-base
+  line-height: $line-height-base
+  text-align: left
+  @each $bpt, $orientation in $map-rotate-back
+    +screen-only($bpt, $orientation)
+      position: fixed
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      overflow: hidden
+    
+  &.no-scroll
+    overflow-y: hidden
+  
+    
+/* Mixins for calculating padding in .wrapper, .container, .row and .col-*-*  */
+
+=layout-gutters($gutters-map)
+  @each $bpt, $padding in $gutters-map
+    @if ($bpt != $bpt_first)
+      +screen($bpt)
+        padding-left: $padding
+        padding-right: $padding
+    @else
+      padding-left: $padding
+      padding-right: $padding
+      
+      
+/* Wrapper is a must-have element on every page */
+    
+.wrapper
+  background: none
+  position: relative
+  display: flex
+  flex-direction: column
+  width: 100%
+  min-height: 100%
+  margin: 0 auto
+  @if $wrapper-gutters != false
+    +layout-gutters($wrapper-gutters)
+  @if $fix-wrapper-width != false
+    @each $bpt in $fix-wrapper-width
+      @if $bpt != $bpt_first
+        @include screen-only($bpt)
+          width: map-get($bpts, $bpt)
+          
+
+/* Container */
+          
+.container
+  position: relative
+  width: 100%
+  max-width: 100%
+  display: flex
+  flex-direction: column
+  @if $container-gutters != false
+    +layout-gutters($container-gutters)
+  @if $container-default-margin-y != false
+    @each $size, $type in $container-default-margin-y
+      +margin($size, $type)
+  @if $col-gutters != false
+    //overflow: hidden
+    
+    
+/* Row */   
+    
+.row
+  flex: 1 0 auto
+  @if $col-gutters != false
+    @each $bpt, $bpt-margin in $col-gutters
+      @if $bpt == $bpt_first
+        width: calc(100% + #{$bpt-margin})
+        margin-left: calc(-#{$bpt-margin} / 2)
+      @else
+        +screen($bpt)
+          width: calc(100% + #{$bpt-margin})
+          margin-left: calc(-#{$bpt-margin} / 2)         
+  @else
+    width: 100%
+  display: flex
+  flex-wrap: wrap
+  @if $row-gutters != false
+    +layout-gutters($row-gutters)
+  @if $row-default-margin-y != false
+    @each $size, $type in $row-default-margin-y
+      +margin($size, $type)
+       
+      
+/* Width for different types of .col-*-*. I will probably never write this once again. */
+
+$map-partials: (1: 'full', 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: 'sixth', 7: 'seventh', 8: 'eighth')
+
+=calc-col-width($i, $grid-columns, $margin: null)
+  @if $margin
+    max-width: calc(#{percentage($i / $grid-columns)} - #{$margin})
+    flex: 1 0 calc(#{percentage($i / $grid-columns)} - #{$margin})
+    flex-basis: calc(#{percentage($i / $grid-columns)} - #{$margin})
+  @else
+    max-width: percentage($i / $grid-columns)
+    flex: 1 0 percentage($i / $grid-columns)
+    flex-basis: percentage($i / $grid-columns)
+  
+=calc-col-width-partial($partial-part, $margin: null)
+  @if $margin
+    max-width: calc(#{percentage(1 / $partial-part)} - #{$margin})
+    flex: 1 0 calc(#{percentage(1 / $partial-part)} - #{$margin}) 
+  @else
+    max-width: percentage(1 / $partial-part)
+    flex: 1 0 percentage(1 / $partial-part) 
+  
+=col-width
+  $margin: 0
+  @each $bpt, $bpt-value in $bpts
+    @if $bpt == $bpt_first
+      $margin: map-get($col-gutters, $bpt)
+      @for $i from 1 through $grid-columns
+        .col-#{$i}
+          +calc-col-width($i, $grid-columns, $margin)
+      .col-fluid
+        max-width: none
+        flex: 1
+      .col-auto
+        max-width: none
+        width: auto
+        flex: 0 0 auto
+        +ie
+          flex-grow: 0 !important 
+          flex-basis: auto !important
+      @each $partial-part, $partial-title in $map-partials
+        .col-#{$partial-title}
+          +calc-col-width-partial($partial-part, $margin) 
+    @else
+      +screen($bpt)
+        @if map-has-key($col-gutters, $bpt)
+          $margin: map-get($col-gutters, $bpt)
+          $current_key: index(map-keys($bpts), $bpt)
+          @for $i from 1 through $current_key
+            $current_bpt: nth(map-keys($bpts), $i)
+            @for $i from 1 through $grid-columns
+              @if ($current_bpt == $bpt_first)
+                .col-#{$i}
+                  +calc-col-width($i, $grid-columns, $margin)
+                @each $partial-part, $partial-title in $map-partials
+                  .col-#{$partial-title}
+                    +calc-col-width-partial($partial-part, $margin) 
+              @else
+                .col-#{$current_bpt}-#{$i}
+                  +calc-col-width($i, $grid-columns, $margin)
+                @each $partial-part, $partial-title in $map-partials
+                  .col-#{$current_bpt}-#{$partial-title}
+                    +calc-col-width-partial($partial-part, $margin) 
+            @if ($current_bpt == $bpt_first)
+              .col-fluid
+                max-width: none
+                flex: 1
+              .col-auto
+                max-width: none
+                width: auto
+                flex: 0 0 auto
+                +ie
+                  flex-grow: 0 !important
+                  flex-basis: auto !important
+            @else
+              .col-#{$current_bpt}-fluid
+                max-width: none
+                flex: 1
+              .col-#{$current_bpt}-auto
+                max-width: none
+                width: auto
+                flex: 0 0 auto
+                +ie
+                  flex-grow: 0 !important
+                  flex-basis: auto !important
+        @else
+          @for $i from 1 through $grid-columns
+            .col-#{$bpt}-#{$i}
+              +calc-col-width($i, $grid-columns, $margin)
+          @each $partial-part, $partial-title in $map-partials
+            .col-#{$bpt}-#{$partial-title}
+              +calc-col-width-partial($partial-part, $margin) 
+          .col-#{$bpt}-fluid
+            max-width: none
+            flex: 1 
+          .col-#{$bpt}-auto
+            max-width: none
+            width: auto
+            flex: 0 0 auto
+            +ie
+              flex-grow: 0 !important
+              flex-basis: auto !important
+          
+@if $col-gutters != false
+  +col-width
+@else
+  @each $bpt, $bpt-value in $bpts
+    @if $bpt != $bpt_first
+      +screen($bpt)
+        .col-#{$bpt}-fluid
+          max-width: none
+          flex: 1
+        .col-#{$bpt}-auto
+          max-width: none
+          width: auto
+          flex: 0 0 auto
+          +ie
+            flex-grow: 0 !important
+            flex-basis: auto !important
+        @for $i from 1 through $grid-columns
+          .col-#{$bpt}-#{$i}
+            +calc-col-width($i, $grid-columns)
+        @each $partial-part, $partial-title in $map-partials
+          .col-#{$bpt}-#{$partial-title}
+            +calc-col-width-partial($partial-part) 
+    @else
+      .col-fluid
+        max-width: none
+        flex: 1 
+      .col-auto
+        max-width: none
+        width: auto
+        flex: 0 0 auto
+        +ie
+          flex-grow: 0 !important
+          flex-basis: auto !important
+      @for $i from 1 through $grid-columns
+        .col-#{$i}
+          +calc-col-width($i, $grid-columns)
+      @each $partial-part, $partial-title in $map-partials
+        .col-#{$partial-title}
+          +calc-col-width-partial($partial-part)
+
+        
+/* Margins (x) setup for .col-*-* */
+           
+=calc-col-margin($bpt)
+  margin-left: calc(#{(map-get($col-gutters, $bpt))} / 2)
+  margin-right: calc(#{(map-get($col-gutters, $bpt))} / 2)  
+
+@if ($col-gutters != false)
+  @each $bpt, $bpt-margin in $col-gutters
+    .row > *[class*='col-']
+      @if $bpt != $bpt_first
+        +screen($bpt)
+          +calc-col-margin($bpt)
+      @else
+        +calc-col-margin($bpt)
+        
+        
+/* Margins (y) setup for .col-*-*. $type = 'y' by default in _settings.sass */
+
+@if $col-default-margin-y != false
+  *[class*='col-']
+    @each $size, $type in $col-default-margin-y
+      +margin($size, $type)
+        
+             
+/* Paddings setup for .col-*-* */
+
+@if $default-col-padding != false
+  *[class*='col-']
+    @each $size, $type in $default-col-padding
+      +padding($size, $type)
+      
+      
+/* Z-index for overflowing .container and .row outlines and IE 11 bug with complex property */
+
+*[class*='col-']
+  position: relative
+  z-index: +1
+  
+*[class*='col-']
+  +ie
+    flex-grow: 1
+      
+          
+/* .offset-*-* classes */
+
+=calc-offset-margin($i, $grid-columns, $margin: null)
+  @if $margin
+    margin-left: calc(#{percentage($i / $grid-columns)} + #{$margin} / 2) !important 
+  @else
+    margin-left: percentage($i / $grid-columns) !important
+  
+=calc-offset-margin-partial($partial-part, $margin: null)
+  @if $margin
+    margin-left: calc(#{percentage(1 / $partial-part)} + #{$margin} / 2) !important
+  @else
+    margin-left: percentage(1 / $partial-part) !important
+  
+=offset-margin
+  $margin: 0
+  @each $bpt, $bpt-value in $bpts
+    @if ($bpt == $bpt_first)
+      $margin: map-get($col-gutters, $bpt)
+      @for $i from 0 through $grid-columns
+        .offset-#{$i}
+          +calc-offset-margin($i, $grid-columns, $margin)
+      @each $partial-part, $partial-title in $map-partials
+        .offset-#{$partial-title}
+          +calc-offset-margin-partial($partial-part, $margin) 
+    @else
+      +screen($bpt)
+        @if map-has-key($col-gutters, $bpt)
+          $margin: map-get($col-gutters, $bpt)
+          $current_key: index(map-keys($bpts), $bpt)
+          @for $i from 1 through $current_key
+            $current_bpt: nth(map-keys($bpts), $i)
+            @for $i from 0 through $grid-columns
+              @if ($current_bpt == $bpt_first)
+                .offset-#{$i}
+                  +calc-offset-margin($i, $grid-columns, $margin)
+              @else
+                .offset-#{$current_bpt}-#{$i}
+                  +calc-offset-margin($i, $grid-columns, $margin)
+            @if ($current_bpt == $bpt_first)
+              @each $partial-part, $partial-title in $map-partials
+                .offset-#{$partial-title}
+                  +calc-offset-margin-partial($partial-part, $margin)              
+            @else
+              @each $partial-part, $partial-title in $map-partials
+                .offset-#{$current_bpt}-#{$partial-title}
+                  +calc-offset-margin-partial($partial-part, $margin)               
+        @else
+          @for $i from 0 through $grid-columns
+            .offset-#{$bpt}-#{$i}
+              +calc-offset-margin($i, $grid-columns, $margin)
+          @each $partial-part, $partial-title in $map-partials
+            .offset-#{$bpt}-#{$partial-title}
+              +calc-offset-margin-partial($partial-part, $margin) 
+
+@if $col-gutters != false
+  +offset-margin
+@else
+  @each $bpt, $bpt-value in $bpts
+    @if $bpt != $bpt_first
+      +screen($bpt)
+        @for $i from 0 through $grid-columns
+          .offset-#{$bpt}-#{$i}
+            +calc-offset-margin($i, $grid-columns)
+        @each $partial-part, $partial-title in $map-partials
+          .offset-#{$bpt}-#{$partial-title}
+            +calc-offset-margin-partial($partial-part)
+    @else        
+      @for $i from 0 through $grid-columns
+        @if ($bpt == $bpt_first)
+          .offset-#{$i}
+            +calc-offset-margin($i, $grid-columns)
+      @each $partial-part, $partial-title in $map-partials
+        .offset-#{$partial-title}
+          +calc-offset-margin-partial($partial-part)
+
+
+/* Get rid of y-margins when needed for col if they are set in settings */
+
+.row.no-my > *[class*='col']
+  margin-top: 0 !important
+  margin-bottom: 0 !important

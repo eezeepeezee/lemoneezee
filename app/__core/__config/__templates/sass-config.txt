@@ -1,0 +1,94 @@
+/* Automatically generate upon config.json */
+/* Colors */
+
+$c-white: <%= colors.base.white %>
+$c-black: <%= colors.base.black %>
+  
+<% _.forEach(colors.schemes.default, function(value, key) { %>
+$c-<%= key %>: <%= value %>
+<% }) %>
+  
+$base-adjust-steps: <%= colors.baseAdjustSteps %>
+  
+<% var i = 1 %>
+$map-color-schemes: (<% _.forEach(colors.schemes, function(value, key) { %><%= key %>: (<% var k = 1 %><% _.forEach(value, function(valueC, keyC) { %><%= keyC %>: <%= valueC %><% if (k < (_.size(value))) { %>, <% } %><% k++ %><% }) %>)<% if (i < (_.size(colors.schemes))) { %>, <% } %><% i++ %><% }) %>)
+
+$scheme-adjust-steps: <%= colors.schemesAdjustSteps %>
+$fallback: <%= colors.fallback %>
+$color-guides: <%= colors.colorGuides %>
+
+  
+/* Grid */  
+  
+$bpt_first: <%= Object.keys(grid.breakpoints)[0] %>
+$bpt_last: <%= Object.keys(grid.breakpoints)[(_.size(grid.breakpoints) - 1)] %>
+
+<% _.forEach(grid.breakpoints, function(value, key) { %>
+$<%= key %>: <%= value %><%= grid.breakpointsUnit %>
+<%  }) %>
+  
+<% var i = 0 %>  
+<% _.forEach(grid.breakpoints, function(value, key) { %>
+<% if (i < (_.size(grid.breakpoints) - 1)) { %>
+<% var k = i + 1 %>
+$<%= key %>-max: $<%= Object.keys(grid.breakpoints)[k] %> - 1
+<% } else { %>  
+$<%= key %>-max: 99999<%= grid.breakpointsUnit %>
+<% } %>
+<% i++ %>
+<%  }) %>  
+  
+<% var i = 1 %> 
+$bpts: (<% _.forEach(grid.breakpoints, function(value, key) { %><%= key %>: $<%= key %><% if (i < (_.size(grid.breakpoints))) { %>, <% } %><% i++ %><%  }) %>)
+
+<% var i = 1 %> 
+$bpts-max: (<% _.forEach(grid.breakpoints, function(value, key) { %><%= key %>: $<%= key %>-max<% if (i < (_.size(grid.breakpoints))) { %>, <% } %><% i++ %><%  }) %>)
+
+$grid-columns: <%= grid.columns %>
+  
+<% _.forEach(grid.gutters, function(value, key) { %>
+$<%= key %>-gutters: <%= value %>
+<% }) %>
+
+$fix-wrapper-width: <%= grid.fixWrapperWidth %>
+  
+$map-rotate-back: <%= grid.rotateBackMap %>
+  
+  
+/* Spacers */  
+  
+$spacer: <%= spacers.spacer %>
+  
+<% var i = 1 %> 
+$map-spacers: (<% _.forEach(spacers.spacerMap, function(value, key) { %><%= key %>: <%= value %><% if (i < (_.size(spacers.spacerMap))) { %>, <% } %><% i++ %><% }) %>)
+  
+<% _.forEach(spacers.defaultMarginY, function(value, key) { %>
+<% if (value == false) { %>
+$<%= key %>-default-margin-y: false
+<% } else { %>
+$<%= key %>-default-margin-y: (<%= value %>: y)  
+<% } %>
+<% }) %>
+
+<% if (spacers.defaultColPadding == false) { %>
+$default-col-padding: false 
+<% } else { %>  
+$default-col-padding: (<%= spacers.defaultColPadding %>)
+<% } %>  
+  
+
+/* Typography */
+                       
+<% var i = 1 %> 
+$fonts-include: (<% _.forEach(typography.fontsInclude, function(value, key) { %>'<%= key %>': <%= value %><% if (i < (_.size(typography.fontsInclude))) { %>, <% } %><% i++ %><% }) %>)  
+ 
+<% var i = 1 %> 
+$fonts-google: (<% _.forEach(typography.fontsGoogle, function(value, key) { %>'<%= key %>': "<%= value %>"<% if (i < (_.size(typography.fontsGoogle))) { %>, <% } %><% i++ %><% }) %>)
+
+$font-main: <%= typography.fontMain %>
+$font-style: <%= typography.fontStyle %>
+
+$html-font-size: <%= typography.htmlFontSize %>
+$font-size-base: <%= typography.fontSizeBase %>
+$line-height-base: <%= typography.lineHeightBase %>
+$font-weight-base: <%= typography.fontWeightBase %>

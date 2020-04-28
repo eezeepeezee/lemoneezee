@@ -1,0 +1,85 @@
+/* *
+ *
+ * Global functions and mixins for keeping margins in paddings in one size system
+ *
+ * */
+
+/* Functions ---------------------------------------------------------------------------------------*/
+
+/* *
+ *
+ * Returns calculated space based on $spacer (8px by default).
+ * Shoule be used carefully when predefined margins and paddings are not enough
+ *
+ * */
+
+@function space($step)
+  @return $step * $spacer
+
+
+/* Mixins ------------------------------------------------------------------------------------------*/
+
+/* Margins and paddings, but don't use it for .wrapper and .container */
+    
+=margin-prepare($space, $type)
+  $space: space($space)
+  @if $type == x
+    margin-left: $space
+    margin-right: $space
+  @else if $type == y
+    margin-top: $space
+    margin-bottom: $space  
+  @else if $type == t
+    margin-top: $space    
+  @else if $type == b
+    margin-bottom: $space
+  @else if $type == l
+    margin-right: $space    
+  @else if $type == r
+    margin-right: $space
+  @else
+    margin: $space $space  
+
+=margin($size: a, $type: b)
+  $basic-space: map-get($map-spacers, $size)
+  @each $bpt, $space in $basic-space
+    @if $bpt == $bpt_first
+      +margin-prepare($space, $type)
+    @else
+      +screen($bpt)
+        +margin-prepare($space, $type)
+      
+      
+/* Type 'stretch' is good for horizontally grown element, 'squish' — for vertically grown */      
+      
+=padding-prepare($space, $type)
+  $space: space($space)
+  @if $type == stretch
+    padding: ($space / 2) $space
+  @else if $type == squish
+    padding: $space ($space / 2)
+  @else if $type == x
+    padding-left: $space
+    padding-right: $space 
+  @else if $type == y
+    padding-top: $space
+    padding-bottom: $space
+  @else if $type == t
+    padding-top: $space
+  @else if $type == b
+    padding-bottom: $space
+  @else if $type == l
+    padding-left: $space
+  @else if $type == r
+    padding-right: $space 
+  @else
+    padding: $space $space  
+    
+=padding($size: a, $type: square)
+  $basic-space: map-get($map-spacers, $size)
+  @each $bpt, $space in $basic-space
+    @if $bpt == $bpt_first
+      +padding-prepare($space, $type)
+    @else
+      +screen($bpt)
+        +padding-prepare($space, $type)

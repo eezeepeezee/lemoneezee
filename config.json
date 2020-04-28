@@ -1,0 +1,73 @@
+{ 
+  "colors": { 
+    "base": {
+      "white": "#ffffff",
+      "black": "#0b0b0b"
+    },    
+    "baseAdjustSteps": 10,
+    "schemes": {        
+      "default": {
+          "brand":       "#fff500",
+          "accent":      "#38bc19",
+          "success":     "#18cc49",
+          "warning":     "#dae21e",
+          "danger":      "#e80f0f",
+          "info":        "#0080ff",
+          "interactive": "#178ee5"    
+      }
+    }, 
+    "schemesAdjustSteps": 5,    
+    "fallback": "rgb(255, 0, 0)",  
+    "metaThemeColor": "#dee600", 
+    "colorGuides": "#ff0080"
+  },
+  "grid": {
+    "columns": 10,
+    "breakpoints": {
+      "xs": 0,
+      "sm": 576,
+      "md": 768,
+      "lg": 992,
+      "xl": 1200
+    },  
+    "breakpointsUnit": "px",  
+    "gutters": {
+      "wrapper":    "(xs: 16px, lg: 32px)",
+      "container":  false,
+      "row":        false,
+      "col":        "(xs: 8px, md: 16px)"
+    },
+    "fixWrapperWidth": "(md, xl)",  
+    "rotateBackMap": false 
+  }, 
+  "spacers": {
+    "spacer": "8px", 
+    "spacerMap": {
+      "a": "(xs: 1)",
+      "b": "(xs: 2, sm: 3)",
+      "c": "(xs: 4)",
+      "d": "(xs: 6)",
+      "e": "(xs: 10)"
+    },         
+    "defaultMarginY": {
+      "container":  false,
+      "row":        "b",
+      "col":        false
+    },    
+    "defaultColPadding": false
+  },
+  "typography": {
+    "fontsInclude": {
+      "Roboto": 400
+    }, 
+    "fontsGoogle": {
+      "PT Serif": "https://fonts.googleapis.com/css?family=PT+Serif&display=swap"
+    }, 
+    "fontMain":       "Roboto",
+    "fontStyle":      "sans-serif",
+    "htmlFontSize":   "16px",
+    "fontSizeBase":   "1rem",
+    "lineHeightBase": 1.5,
+    "fontWeightBase": "normal"
+  }
+}

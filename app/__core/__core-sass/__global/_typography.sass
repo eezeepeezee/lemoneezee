@@ -1,0 +1,23 @@
+/* *
+ *
+ * Global functions and mixins for typography.
+ * Multipliers for functions should be quarters or at least halfs (1.25, 1.5) to keep the rhythm.
+ * But at the end of the day it is already a part of design so it is totally up to you
+ *
+ * */
+
+/* Functions ---------------------------------------------------------------------------------------*/
+
+/* Returns calculated font-size based on 'font-size-base' in config.json */
+
+@function font-s($multiplier)
+  @return $font-size-base * $multiplier
+
+  
+/* Returns calculated line-height based on 'line-height-base' in config.json  */
+
+@function line-h($multiplier)
+  @return $line-height-base * $multiplier
+
+
+/* Mixins ------------------------------------------------------------------------------------------*/

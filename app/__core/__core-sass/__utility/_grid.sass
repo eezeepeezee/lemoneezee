@@ -1,0 +1,73 @@
+/* *
+ *
+ * Utility classes for elements in grid or other parts of layout
+ *
+ * */
+
+/* Class for an element to break the line of col-*-* in a row */
+
+@each $bpt, $bpt-value in $bpts
+  @if $bpt != $bpt_first
+    +screen($bpt)
+      .break-line-#{$bpt}
+        flex-basis: 100%
+        height: 0
+  @else
+    .break-line
+      flex-basis: 100%
+      height: 0
+
+      
+/* Disabling hover state. Used in preloader */
+    
+.disable-hover,
+.disable-hover *
+  pointer-events: none !important
+  
+  
+/* Flex. I wouldn't use it as classes, but anyway. */
+  
+.flex-row
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  
+.flex-column
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+
+  
+/* Alignment for flexbox: createsshorthand classes like .js-c, ac-fs, etc. */
+
+$props:           "justify-content" "align-content" "align-items"
+$aligns:          "center" "stretch" "space-between" "space-around" "flex-start" "flex-end"
+$props-prefixes:  jc ac ai
+$aligns-prefixes: c s sb sa fs fe
+
+@for $i from 1 through length($props)
+  @for $k from 1 through length($aligns)
+    .#{nth($props-prefixes, $i)}-#{nth($aligns-prefixes, $k)}
+      #{nth($props, $i)}: #{nth($aligns, $k)}  
+  
+      
+/* 100% viewport min-height or height. Jumping height on mobile fixed in common.js, so it doesn't have a css callback */
+
+.min-height-vp
+  min-height: var(--window-height)
+
+.height-vp
+  height: var(--window-height)
+  
+  
+/* SEO-friendly hidden elements, which should be available for screenreaders or search engines */
+
+.sr-only
+  position: absolute
+  width: 1px
+  height: 1px
+  margin: -1px
+  border: 0
+  padding: 0
+  clip: rect(0 0 0 0)
+  overflow: hidden

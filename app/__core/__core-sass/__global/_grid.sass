@@ -1,0 +1,119 @@
+/* *
+ *
+ * Global functions and mixins to assist working with grid or other layout elements
+ *
+ * */
+
+/* Functions ---------------------------------------------------------------------------------------*/
+
+
+/* Mixins ------------------------------------------------------------------------------------------*/
+
+
+/* Media queries
+ *
+ * Example: 'md' breakpoint = 768px, 'lg' = 992px, so:
+ *
+ * +screen(md)       —   768px   <=   screen                    // so it starts FROM md and higher
+ * +screen-max(md)   —   0       <    screen   <=   991px      // so it is from 0 up to INCLUDING MD
+ * +screen-only(md)  —   768px   <=   screen   <=   991px
+ *
+ * */
+
+=screen($bpt, $orientation: null)
+  @if map-has-key($bpts, $bpt)
+    @if ($orientation)
+      @media only screen and (min-width: #{(map-get($bpts, $bpt))}) and (orientation: $orientation)
+        @content
+    @else
+      @media only screen and (min-width: #{(map-get($bpts, $bpt))})
+        @content
+    
+=screen-max($bpt, $orientation: null)
+  @if map-has-key($bpts-max, $bpt)
+    @if ($orientation)
+      @media only screen and (max-width: #{(map-get($bpts-max, $bpt))}) and (orientation: $orientation)
+        @content
+    @else
+      @media only screen and (max-width: #{(map-get($bpts-max, $bpt))})
+        @content
+    
+=screen-only($bpt, $orientation: null)
+  @if $bpt == $bpt_last
+    @if ($orientation)
+      @media only screen and (min-width: #{(map-get($bpts, $bpt_last))}) and (orientation: $orientation)
+        @content
+    @else
+      @media only screen and (min-width: #{(map-get($bpts, $bpt_last))})
+        @content
+  @else
+    @if (map-has-key($bpts, $bpt) and map-has-key($bpts-max, $bpt))
+      @if ($orientation)
+        @media only screen and (min-width: #{(map-get($bpts, $bpt))}) and (max-width: #{(map-get($bpts-max, $bpt))}) and (orientation: $orientation)
+          @content
+      @else
+        @media only screen and (min-width: #{(map-get($bpts, $bpt))}) and (max-width: #{(map-get($bpts-max, $bpt))})
+          @content
+      
+      
+/* Portrait and Landscape screens */  
+      
+=screen-pt
+  @media only screen and (orientation: portrait)
+    @content
+    
+=screen-ls
+  @media only screen and (orientation: landscape)
+    @content
+      
+    
+/* IE and Edge */ 
+      
+=ie
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+    @content
+    
+=edge
+  @supports (-ms-ime-align:auto)
+    @content
+  
+
+/* *
+ *
+ * Hide content. With option 'only' works only on exact breakpoint. Option 'only' can have any value, e.g. '+hide(sm, any word)'
+ *
+ * */
+
+=hide($bpt, $only: null)
+  @if map-has-key($bpts, $bpt)
+    @if ($only)
+      +screen-only($bpt)
+        display: none
+    @else
+      +screen($bpt)
+        display: none
+    
+    
+/* *
+ *
+ * Keep fixed width for .col-*-* at minimum breakpoint width.
+ * Use for first col in row only!
+ *
+ * */
+
+=fixed-width-bpt($screen: null)
+  @if $screen
+    @include screen($screen)
+      max-width: map-get($bpts, $screen)
+      flex-basis: 0 0 map-get($bpts, $screen)
+    
+    
+/* Floats for .col-*-* */
+
+=float-right
+  margin-left: auto !important
+  right: 0
+  
+=float-bottom
+  margin-top: auto !important
+  bottom: 0

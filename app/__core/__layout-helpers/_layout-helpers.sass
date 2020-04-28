@@ -1,0 +1,134 @@
+/* *
+ *
+ * Styling Layout Helpers
+ *
+ * */
+
+/* Layout guides show the grid columns. Color is set in config.json */
+
+.layout-guides
+  min-width: 320px
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 9998 !important
+  pointer-events: none
+  display: flex
+  opacity: 0
+  margin: 0 auto !important
+  @if $wrapper-gutters != false
+    @each $bpt, $padding in $wrapper-gutters
+      @if $bpt != xs
+        +screen($bpt)
+          padding-left: $padding
+          padding-right: $padding
+      @else
+        padding-left: $padding
+        padding-right: $padding
+  @if $fix-wrapper-width != false
+    @each $bpt in $fix-wrapper-width
+      @if $bpt != xs
+        @include screen-only($bpt)
+          width: map-get($bpts, $bpt)
+      
+  & .container
+    height: 100%
+    margin-top: 0 !important
+    margin-bottom: 0 !important
+  
+    & .row 
+      height: 100%
+      margin-top: 0 !important
+      margin-bottom: 0 !important
+      
+      & > *[class*='col']
+        outline: 1px solid rgba($color-guides, 0.4)
+        background: rgba($color-guides, 0.2)
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: center
+        padding: 0 !important
+        margin-top: 0 !important
+        margin-bottom: 0 !important
+
+        & p 
+          font-size: 1rem
+          font-weight: bold
+          color: rgba($color-guides, 0.5)
+          
+          
+/* Layout breakpoints shows current breakpoint and screen orientation */          
+          
+.layout-breakpoints
+  position: fixed
+  top: 0
+  left: 50%
+  transform: translateX(-50%)
+  z-index: 9999 !important
+  pointer-events: none
+  padding: 4px 16px
+  border-radius: 0 0 4px 4px
+  background: rgba(0, 0, 0, 0.85)
+  color: #fff
+  opacity: 0
+  
+  &:before
+    @each $bpt, $bpt-value in $bpts
+      @include screen($bpt, landscape)
+        content: "#{$bpt} ≥ #{$bpt-value}, landscape"
+      @include screen($bpt, portrait)
+        content: "#{$bpt} ≥ #{$bpt-value}, portrait"
+
+
+/* Hiding cursor and disabling pointer events for testing keyboard-only accessibility */ 
+
+.mouse-killed
+  pointer-events: none !important
+  cursor: none !important
+  
+  & *
+    pointer-events: none !important
+    cursor: none !important
+  
+  
+/* Blurring everything to test design for accents */   
+
+.wrapper--blur
+  filter: blur(5px)
+  overflow-x: hidden
+  
+  
+/* Adding outlines to everything on a page */   
+  
+.wrapper--outlined
+  outline: 1px solid red
+  
+  & > *
+    outline: 1px solid blue
+  
+    & > *
+      outline: 1px solid green
+  
+      & > *
+        outline: 1px solid brown
+  
+        & > *
+          outline: 1px solid black
+
+          & > *
+            outline: 1px solid silver
+  
+            & > *
+              outline: 1px solid pink
+  
+              & > *
+                outline: 1px solid grey
+  
+                & > *
+                  outline: 1px solid violet
+  
+                  & > *
+                    outline: 1px solid navy

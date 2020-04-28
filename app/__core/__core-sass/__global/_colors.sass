@@ -1,0 +1,18 @@
+/* *
+ *
+ * Global functions and mixins to operate with colors
+ *
+ * */
+
+/* Functions ---------------------------------------------------------------------------------------*/
+
+/* Returns css var according to color scheme. Fallback is defined in config.json */
+
+@function color($color-name)
+  @if $fallback
+    @return var(--c-#{$color-name}, $fallback)
+  @else
+    @return var(--c-#{$color-name})
+
+
+/* Mixins ------------------------------------------------------------------------------------------*/

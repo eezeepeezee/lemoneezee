@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru" class="no-js" data-scheme="default">
+
+<head>
+{% include "/includes/head.twig" with {title: title, css: css} %}
+</head>
+
+<body>
+
+<div class="wrapper">
+
+{% block content %}
+{% endblock %}
+
+</div>
+
+{% include "/includes/scripts.twig" with {js: js} %}
+
+</body>
+</html>
