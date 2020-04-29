@@ -331,13 +331,15 @@ function buildCss() {
   const colorVarsSet = {};
 
   /* All css variables for colors */
-  const colorVarsCss = fs.readFileSync(`${paths.app.assets}css/color-vars.min.css`, 'utf8');
-
+  let colorVarsCss = fs.readFileSync(`${paths.app.assets}css/color-vars.min.css`, 'utf8');
+  
+  /* Get rid of maps block and extra :root selector */
+  colorVarsCss = colorVarsCss.replace(/\r?\n*?\/\*#(.*?)\*\//g, '');
+  colorVarsCss = colorVarsCss.replace(/:root,/g, '');
+  
   /* Split all color schemes into temporary array depending on :root */
   let c = [];
   c = colorVarsCss.split(':root');
-  
-  console.log(c);
 
   /* Regexp to clear string with variables */
   const s = /\[data-scheme=.*?\]/gm;
@@ -348,8 +350,8 @@ function buildCss() {
     /* This is a fucking trick */
     if (varsSet.length > 1) {
       /* Get rid of curly bracets */
-      varsSet = varsSet.replace(/{|}/gm, '');
-
+      varsSet = varsSet.replace(/{|(}(\\n)?)/g, '');
+      
       /* Get scheme name with 's' regexp */
       let colorSchemeName = varsSet.match(s)[0].replace('[data-scheme=', '').replace(']', '');
       colorSchemeName = `"${colorSchemeName}"`;
