@@ -1,12 +1,4 @@
 node_modules/
-app/assets/css/libs/normalize.min.css
-app/assets/css/maps/
-app/assets/css/color-vars.min.css
-app/assets/css/common.min.css
-app/assets/css/layout-helpers.min.css
-app/assets/js/maps/
-app/assets/js/common.min.js
-app/assets/js/components.min.js
 app/*.html
 build/
 readme/
