@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/doc/src/logo_lemoneezee.png "LemonEezee frontend-template")
+![LemonEezee frontend-template](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/doc/src/logo_lemoneezee.png "LemonEezee frontend-template")
 
 # LemonEezee
 
@@ -20,12 +20,13 @@ LemonEezee is a fully configurable and not overstyled frontend-template that hel
 Get the repo onto your local machine (or download zip):
 
 ```bash
-git clone https://github.com/eezeepeezee/lemoneezee.git
+git clone https://github.com/eezeepeezee/lemoneezee.git my-awesome-project
 ```
 
 Install npm packages:
 
 ```bash
+cd my-awesome-project
 npm i
 ```
 
@@ -51,6 +52,11 @@ Mostly, individual developers and small teams who don't want to waste time for o
 
 - **HTML5**, **CSS3** and **Sass**, **Vanilla JS**, a little bit of **Twig**.
 - Know how to run commands in terminal and be familiar with **Node.js** and **NPM** (if you are not aware of any of those — it is worth spending couple hours on YouTube and you're one level up).
+
+## Thanks
+
+![LemonEezee frontend-template](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/doc/src/logo_browserstack.png "LemonEezee frontend-template")
+[Browserstack](https://www.browserstack.com/) for the great opportunity of free testing for open source projects.
 
 ## Contributors
 
