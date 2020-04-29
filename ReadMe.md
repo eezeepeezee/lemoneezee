@@ -56,6 +56,7 @@ Mostly, individual developers and small teams who don't want to waste time for o
 ## Thanks
 
 ![LemonEezee frontend-template](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/doc/src/logo_browserstack.png "LemonEezee frontend-template")
+
 [Browserstack](https://www.browserstack.com/) for the great opportunity of free testing for open source projects.
 
 ## Contributors
