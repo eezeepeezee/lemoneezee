@@ -1,12 +1,9 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/app/assets/img/logo_lemoneezee.png" alt="LemonEezee frontend-template" width="150" height="130">
-</p>
+![alt text](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/doc/src/logo_lemoneezee.png "LemonEezee frontend-template")
 
-<h1 align="center">LemonEezee</h1>
-<p align="center">Yet another frontend-template. Or framework. Or boilerplate. Whatever.</p>
-<br>
+# LemonEezee
+Yet another frontend-template. Or framework. Or boilerplate. Whatever.
 
-# What is LemonEezee?
+## What is LemonEezee?
 
 LemonEezee is a fully configurable and not overstyled frontend-template that helps quickly start projects from scratch. It provides a wide range of tasks to automate the web-developing process and has some nice functions inside to make this process more precise.
 
@@ -32,7 +29,7 @@ gulp runapp
 
 While it is still alpha, full manual will be published later.
 
-## **Who may need this?**
+## Who may need this?
 
 Mostly, individual developers and small teams who don't want to waste time for organizing workflow instead of doing work itself.
 
