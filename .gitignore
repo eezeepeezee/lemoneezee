@@ -1,4 +1,8 @@
 node_modules/
+build/
+readme/
+
+# all the items listed below are generated on every gulp runapp, so no need to keep them in repo
 app/__core/__config/_settings.sass
 app/assets/css/libs/normalize.min.css
 app/assets/css/maps/
@@ -9,5 +13,3 @@ app/assets/js/maps/
 app/assets/js/common.min.js
 app/assets/js/components.min.js
 app/*.html
-build/
-readme/
