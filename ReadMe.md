@@ -15,7 +15,13 @@ Yet another frontend-template. Or framework. Or boilerplate. Whatever.
 
 LemonEezee is a fully configurable and not overstyled frontend-template that helps quickly start projects from scratch. It provides a wide range of tasks to automate the web-developing process and has some nice functions inside to make this process more precise.
 
-## Installation and basic usage
+## Requirements
+
+* [Node.js >= v.10 (with npm)](https://nodejs.org/en/)
+* [Gulp](https://www.npmjs.com/package/gulp)
+
+
+## Installation and quick start
 
 Get the repo onto your local machine (or download zip):
 
@@ -36,7 +42,7 @@ Start working:
 gulp runapp
 ```
 
-While it is still alpha, full manual will be published later.
+> While it is still alpha, full manual will be published later.
 
 ## Who may need this?
 
@@ -44,9 +50,18 @@ Mostly, individual developers and small teams who don't want to waste time for o
 
 ## What are the key ideas of LemonEezee?
 
-1. **Lots of predefined markup and styles, but the design is up to you.** LemonEezee will help you with grids, colors, spacers, and typography, it contains a lot of code snippets and next releases will provide configurable and flexible component templates. But at the end of the day, you will have to care about how to use these grids, colors, spacers, and other stuff properly and how it needs to be used according to your design.
-2. **Change anything you want in its core, but the core is already well-configured.** There are a lot of automated tasks for compiling templates, styles, and scripts with some tricky things like custom separating and bundling, and so on. It provides logic for file structure — but it is easy to hold it the way you want.
-3. **Get some nice help!** With Layout Helpers module you will get some nice stuff like visualizing guides and breakpoints, "mouse killer" to test your UI in keyboard-only, and a couple more cool things.
+1. **Easy configuring with your exact preferences**
+
+   Setup your own breakpoints — even the names, if you don't like "sm" or "xl" prefixes. Need 16 columns in your grid system? Or 8? Or 32? Doesn't matter. You will automatically get CSS-classes like `col-sm-10` or `col-md-24` depending on your choice (and also some universal like `col-half` and `col-quarter`).   
+   In addition to the grid, you can configure the color system, spacers, and typography — and get a bunch of CSS classes, Sass functions, and mixins, code snippets, and other things to use in your project.
+
+2. **Lots of automated tasks not to waste your time**
+
+   You won't forget to include your stylesheets or scripts into your page — it will be done automatically. Need a sprite of SVG icons? Just put them into one folder. Do you care about prefixes in CSS? Or correct fonts including? It is all already tuned. You will spend an hour to know how it works and then forget about doing it by yourself.
+
+3. **Some nice helping features**
+
+   With Layout Helpers module you will get some nice stuff like visualizing guides and breakpoints, "mouse killer" to test your UI in keyboard-only, and a couple more cool things.
 
 ## Skills requirements
 
