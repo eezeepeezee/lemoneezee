@@ -14,7 +14,15 @@
           "danger":      "#e80f0f",
           "info":        "#0080ff",
           "interactive": "#178ee5"    
-      }
+      },
+      "alternative": {
+          "brand":       "#0089ff",
+          "accent":      "#af19bc",
+          "success":     "#4fc970",
+          "warning":     "#b1b907",
+          "danger":      "#ea3838",
+          "info":        "#237cd4"   
+      }   
     }, 
     "schemesAdjustSteps": 5,    
     "fallback": "rgb(255, 0, 0)",  
@@ -22,7 +30,6 @@
     "colorGuides": "#ff0080"
   },
   "grid": {
-    "columns": 10,
     "breakpoints": {
       "xs": 0,
       "sm": 576,
@@ -30,9 +37,11 @@
       "lg": 992,
       "xl": 1200
     },  
-    "breakpointsUnit": "px",  
+    "breakpointsUnit": "px",
+    "layoutMinWidth": "320px",
+    "columns": 16,
     "gutters": {
-      "wrapper":    "(xs: 16px, lg: 32px)",
+      "wrapper":    "(xs: 16px, sm: 0, lg: 32px)",
       "container":  false,
       "row":        false,
       "col":        "(xs: 8px, md: 16px)"

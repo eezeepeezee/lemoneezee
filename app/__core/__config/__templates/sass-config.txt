@@ -44,6 +44,8 @@ $bpts: (<% _.forEach(grid.breakpoints, function(value, key) { %><%= key %>: $<%=
 <% var i = 1 %> 
 $bpts-max: (<% _.forEach(grid.breakpoints, function(value, key) { %><%= key %>: $<%= key %>-max<% if (i < (_.size(grid.breakpoints))) { %>, <% } %><% i++ %><%  }) %>)
 
+$layout-min-width: <%= grid.layoutMinWidth %>
+
 $grid-columns: <%= grid.columns %>
   
 <% _.forEach(grid.gutters, function(value, key) { %>

@@ -7,31 +7,29 @@
     "baseAdjustSteps": 10,
     "schemes": {        
       "default": {
-          "brand":       "#7700ff",
-          "accent":      "#ffd800",
+          "brand":       "#fff500",
+          "accent":      "#38bc19",
           "success":     "#18cc49",
           "warning":     "#dae21e",
           "danger":      "#e80f0f",
           "info":        "#0080ff",
           "interactive": "#178ee5"    
       },
-      "dyss": {
-          "brand":       "red",
-          "accent":      "blue",
-          "success":     "#18cc49",
-          "warning":     "#dae21e",
-          "danger":      "#e80f0f",
-          "info":        "#0080ff",
-          "interactive": "#178ee5"           
-      }
+      "alternative": {
+          "brand":       "#0089ff",
+          "accent":      "#af19bc",
+          "success":     "#4fc970",
+          "warning":     "#b1b907",
+          "danger":      "#ea3838",
+          "info":        "#237cd4"   
+      },      
     }, 
     "schemesAdjustSteps": 5,    
-    "fallback": "rgba(77, 222, 133, 0.5)",  
+    "fallback": "rgb(255, 0, 0)",  
     "metaThemeColor": "#dee600", 
-    "colorGuides": "#ff0000"
+    "colorGuides": "#ff0080"
   },
   "grid": {
-    "columns": 16,
     "breakpoints": {
       "xs": 0,
       "sm": 576,
@@ -39,14 +37,16 @@
       "lg": 992,
       "xl": 1200
     },  
-    "breakpointsUnit": "px",  
+    "breakpointsUnit": "px",
+    "layoutMinWidth": "320px",
+    "columns": 16,
     "gutters": {
-      "wrapper":    "(xs: 16px, lg: 32px)",
+      "wrapper":    "(xs: 16px, sm: 0, lg: 32px)",
       "container":  false,
       "row":        false,
-      "col":        false
+      "col":        "(xs: 8px, md: 16px)"
     },
-    "fixWrapperWidth": "(xl)",  
+    "fixWrapperWidth": "(md, xl)",  
     "rotateBackMap": false 
   }, 
   "spacers": {
@@ -60,21 +60,20 @@
     },         
     "defaultMarginY": {
       "container":  false,
-      "row":        false,
-      "col":        "b"
+      "row":        "b",
+      "col":        false
     },    
     "defaultColPadding": false
   },
   "typography": {
     "fontsInclude": {
-      "BitterRegular":  400, 
-      "BitterItalic":   400
+      "Roboto": 400
     }, 
     "fontsGoogle": {
-      "PT Mono": "https://fonts.googleapis.com/css?family=PT+Mono&display=swap"
+      "PT Serif": "https://fonts.googleapis.com/css?family=PT+Serif&display=swap"
     }, 
-    "fontMain":       "PT Mono",
-    "fontStyle":      "monospace",
+    "fontMain":       "Roboto",
+    "fontStyle":      "sans-serif",
     "htmlFontSize":   "16px",
     "fontSizeBase":   "1rem",
     "lineHeightBase": 1.5,
