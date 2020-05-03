@@ -68,7 +68,7 @@
   "typography": {
     "fontsInclude": {
       "Roboto": 400
-    }, 
+    },
     "fontsGoogle": {
       "PT Serif": "https://fonts.googleapis.com/css?family=PT+Serif&display=swap"
     }, 

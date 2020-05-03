@@ -22,8 +22,8 @@ $map-font-types: ('sans-serif': "-apple-system, BlinkMacSystemFont, 'Segoe UI', 
 @each $font, $font-weight in $fonts-include
   @font-face
     font-family: $font
-    src: url(../fonts/#{$font}/#{$font}.woff2) format('woff2')
-    src: url(../fonts/#{$font}/#{$font}.woff) format('woff')
+    src: url(../fonts/#{$font}.woff2) format('woff2')
+    src: url(../fonts/#{$font}.woff) format('woff')
     font-weight: $font-weight
     font-stretch: normal
     font-display: swap
