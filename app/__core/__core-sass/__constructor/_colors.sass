@@ -13,10 +13,11 @@ $diff: abs($c-white-rgb - $c-black-rgb)
 $step: ceil($diff / ($base-adjust-steps + 1))
 \:root,:root[data-scheme="default"]
   --c-white: rgb(#{$c-white-rgb}, #{$c-white-rgb}, #{$c-white-rgb})
-  $k: 1
-  @for $i from $base-adjust-steps through 1
-    --c-gray-#{$k}: rgb(#{$step * $i}, #{$step * $i}, #{$step * $i})
-    $k: $k + 1
+  @if (($base-adjust-steps > 0) and ($base-adjust-steps <= 20))
+    $k: 1
+    @for $i from $base-adjust-steps through 1
+      --c-gray-#{$k}: rgb(#{$step * $i}, #{$step * $i}, #{$step * $i})
+      $k: $k + 1
   --c-black: rgb(#{$c-black-rgb}, #{$c-black-rgb}, #{$c-black-rgb})  
   
   
