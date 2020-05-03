@@ -17,7 +17,6 @@
       },
       "alternative": {
           "brand":       "#0089ff",
-          "accent":      "#af19bc",
           "success":     "#4fc970",
           "warning":     "#b1b907",
           "danger":      "#ea3838",

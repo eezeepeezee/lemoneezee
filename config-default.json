@@ -17,12 +17,11 @@
       },
       "alternative": {
           "brand":       "#0089ff",
-          "accent":      "#af19bc",
           "success":     "#4fc970",
           "warning":     "#b1b907",
           "danger":      "#ea3838",
           "info":        "#237cd4"   
-      },      
+      }   
     }, 
     "schemesAdjustSteps": 5,    
     "fallback": "rgb(255, 0, 0)",  

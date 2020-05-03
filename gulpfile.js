@@ -421,16 +421,9 @@ function buildCss() {
       
     });
     
-    /* Need to clear unnested properties and put a fallback if true */
-    const regex = new RegExp(`var\\(--c-(.*?)\\)?\\)`, 'g');
-    
-    let unmatched;
-    if (configGlobal.colors.fallback) {
-      unmatched = configGlobal.colors.fallback;
-    } else {
-      unmatched = 'none';
-    }
-    cssToSave = cssToSave.replace(regex, unmatched);
+    /* Need to clear unnested properties for colors which weren'r reassigned */
+    const regex = new RegExp(`var\\(--c-(.*?)\\)?\\)`, 'g');    
+    cssToSave = cssToSave.replace(regex, '');
     
     /* Create dir if not exists */
     fsExtra.ensureDirSync(`${paths.build}assets/css/`);
