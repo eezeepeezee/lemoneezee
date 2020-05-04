@@ -4,7 +4,6 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/eezeepeezee/lemoneezee)
 ![GitHub](https://img.shields.io/github/license/eezeepeezee/lemoneezee)
-![GitHub repo size](https://img.shields.io/github/repo-size/eezeepeezee/lemoneezee)
 ![node-current](https://img.shields.io/node/v/fs-extra)
 ![David](https://img.shields.io/david/dev/eezeepeezee/lemoneezee)
 
