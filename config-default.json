@@ -23,8 +23,7 @@
           "info":        "#237cd4"   
       }   
     }, 
-    "schemesAdjustSteps": 5,    
-    "fallback": "rgb(255, 0, 0)",  
+    "schemesAdjustSteps": 5,  
     "metaThemeColor": "#dee600", 
     "colorGuides": "#ff0080"
   },

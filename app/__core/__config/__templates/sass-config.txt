@@ -14,7 +14,6 @@ $base-adjust-steps: <%= colors.baseAdjustSteps %>
 $map-color-schemes: (<% _.forEach(colors.schemes, function(value, key) { %><%= key %>: (<% var k = 1 %><% _.forEach(value, function(valueC, keyC) { %><%= keyC %>: <%= valueC %><% if (k < (_.size(value))) { %>, <% } %><% k++ %><% }) %>)<% if (i < (_.size(colors.schemes))) { %>, <% } %><% i++ %><% }) %>)
 
 $scheme-adjust-steps: <%= colors.schemesAdjustSteps %>
-$fallback: <%= colors.fallback %>
 $color-guides: <%= colors.colorGuides %>
 
   

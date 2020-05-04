@@ -172,7 +172,7 @@ function cssCompile() {
     .pipe(sassGlob())
     .pipe(sass({ errLogToConsole: true }))
     .pipe(autoprefixer(['last 10 versions', '> 1%', 'IE 11'], { cascade: true }))
-    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
+    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, colormin: false }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write('/maps'))
     .pipe(gulp.dest(`${paths.app.assets}css/`));
