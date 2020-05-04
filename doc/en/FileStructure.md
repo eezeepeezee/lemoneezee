@@ -20,8 +20,8 @@ lemoneezee/
 ├── .gitignore
 ├── .nvmrc
 ├── .eslintrc.js
-├── config.json
-├── config-default.json
+├── config.yml
+├── config-default.yml
 ├── gulpfile.js
 ├── LICENSE
 ├── package.json
@@ -72,9 +72,9 @@ This is a nice feature. This file is automatically compiled with the list of all
 
 All the manuals. You may put it into .gitignore on your own project.
 
-### `config.json` (and `config-default.json`)
+### `config.yml` (and `config-default.yml`)
 
-This is the most useful file in the framework. Here you configure everything: colors, grids, spacers, typography to use it in templates and styles — and there will be an additional manual for this (though it is still simple, you need half an hour to remember what is what). File `config.json` is an initial copy of `config-default.json` which will be updated in case we will do some new stuff for configuration — so you can delete it or keep if you want to have a reference of default settings. 
+This is the most useful file in the framework. Here you configure everything: colors, grids, spacers, typography to use it in templates and styles — and there will be an additional manual for this (though it is still simple, you need half an hour to remember what is what). File `config.yml` is an initial copy of `config-default.yml` which will be updated in case we will do some new stuff for configuration — so you can delete it or keep if you want to have a reference of default settings. 
 
 There are plenty of powerful things to configurate even after you've made lots of work on your project — we'll see it later.
 
