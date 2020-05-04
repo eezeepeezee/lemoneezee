@@ -368,7 +368,7 @@ function buildCss() {
       });
     }
   });
-
+  
 
   /* Get initial common.min.css and parse it into object */
 
@@ -422,7 +422,7 @@ function buildCss() {
     });
     
     /* Need to clear unnested properties for colors which weren'r reassigned */
-    const regex = new RegExp(`var\\(--c-(.*?)\\)?\\)`, 'g');    
+    const regex = new RegExp(`rgba\\(var\\(--c-(.*?)\\)?\\),?[.0-9]*?\\)`, 'g');    
     cssToSave = cssToSave.replace(regex, '');
     
     /* Create dir if not exists */
