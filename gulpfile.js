@@ -20,6 +20,7 @@ const inject = require('gulp-inject');
 const merge = require('merge-stream');
 // const path = require('path');
 const plumber = require('gulp-plumber');
+const readYaml = require('read-yaml');
 const removeEmptyLines = require('gulp-remove-empty-lines');
 const rename = require('gulp-rename');
 const replace = require('gulp-replace');
@@ -35,7 +36,7 @@ const uglify = require('gulp-uglify');
 
 /* Const variable for config */
 
-const configGlobal = require('./config.json');
+const configGlobal = './config.yml';
 
 
 /* Define all paths */
@@ -90,12 +91,14 @@ function runbuild(done) {
 /* Generating sass, json and js config files for using in different parts of the boilerplate */
 
 function config() {
+
+//  console.log(readYaml.sync('./config.yml'));
   
   return gulp
     .src(`${paths.app.__core}__config/__templates/sass-config.txt`)
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
-    .pipe(template(configGlobal))
-    .pipe(rename('_settings.sass'))
+    .pipe(template(readYaml.sync(configGlobal)))
+    .pipe(rename('_config.sass'))
     .pipe(removeEmptyLines({}))
     .pipe(gulp.dest(`${paths.app.__core}__config/`));    
   
@@ -107,7 +110,7 @@ function config() {
 function layoutHelpers() {
   return gulp
     .src([`${paths.app.__core}__layout-helpers/layout-helpers.twig`])
-    .pipe(data(() => JSON.parse(fs.readFileSync('./config.json'))))
+    .pipe(data(() => readYaml.sync(configGlobal)))
     .pipe(twig())
     .pipe(gulp.dest(`${paths.app.__core}__layout-helpers/`));
 }
@@ -130,7 +133,7 @@ function htmlPages() {
   return gulp
     .src([`${paths.app.pages}*.twig`])
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
-    .pipe(data(() => JSON.parse(fs.readFileSync('./config.json'))))
+    .pipe(data(() => readYaml.sync(configGlobal)))
     .pipe(twig({ base: 'app/' }))
     .pipe(gulp.dest('app'));
 }
