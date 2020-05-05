@@ -4,15 +4,15 @@ This document tells how to set up `config.yml`, and a little about what's happen
 
 Quick links:
 
-- Overview of `config.yml`
-- Colors
+- [Overview](#overview-of-configyml) of `config.yml`
+- [Colors](#colors)
     - `base`
     - `baseAdjustSteps`
     - `schemes`
     - `schemesAdjustSteps`
     - `metaThemeColor`
     - `colorGuides`
-- Grid
+- [Grid](#grid)
     - `breakpoints`
     - `breakpointsUnit`
     - `layoutMinWidth`
@@ -20,12 +20,12 @@ Quick links:
     - `gutters`
     - `fixWrapperWidth`
     - `rotateBackMap`
-- Spacers
+- [Spacers](#spacers)
     - `spacer`
     - `spacerMap`
     - `defaultMarginY`
     - `defaultColPadding`
-- Typography
+- [Typography](#typography)
     - `fontsInclude`
     - `fontsGoogle`
     - `fontMain` and `fontStyle`
