@@ -67,11 +67,17 @@ Mostly, individual developers and small teams who don't want to waste time for o
 - **HTML5**, **CSS3** and **Sass**, **Vanilla JS**, a little bit of **Twig**.
 - Know how to run commands in terminal and be familiar with **Node.js** and **NPM** (if you are not aware of any of those — it is worth spending couple hours on YouTube and you're one level up).
 
-## Thanks
+## Thanks and credits
 
 ![LemonEezee frontend-template](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/docs/src/logo_browserstack.png "LemonEezee frontend-template")
 
 [Browserstack](https://www.browserstack.com/) for the great opportunity of free testing for open source projects.
+
+There are some great third-party libraries and technologies which make LemonEezee much more better. 
+
+- [fastclick](https://github.com/ftlabs/fastclick) by FT Labs
+- [lazysizes](https://github.com/aFarkas/lazysizes) by Alexander Farkas
+- [picturefill](https://github.com/scottjehl/picturefill) by Scott Jehl
 
 ## Contributors
 
