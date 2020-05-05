@@ -61,7 +61,7 @@ In `colors` you're able to set color schemes and some additional settings which 
 
 - **Note:** Use can use HEX, RGB, or HSL color modes, but not RGBa or HSLa.
 
-
+---
 #### `base`
 
 Sets `white` and `black` colors for using them independently on further color schemes and calculating intermediate gray colors.
@@ -74,7 +74,7 @@ base:
   black: "#0b0b0b"
 ```
 
-
+---
 #### `baseAdjustSteps`
 
 Defines how many intermediate gray colors will be created between `white` and `black`. 
@@ -87,7 +87,7 @@ baseAdjustSteps: 10
 # 0 — 20
 ```
 
-
+---
 #### `schemes`
 
 It seems large, but it simply defines color schemes. As many as you want your site to switch between.
@@ -156,7 +156,7 @@ When you make a build, it will create additional files like `common.default.min.
 
 Then look at `<head>` section of your every `*.html`: there's already a script which detects browsers with no CSS variables support and gives `common.default.min.css` as an additional stylesheet right after `common.min.css`. Switch for alternative schemes is done with loading other generated stylesheets. 
 
-
+---
 #### `schemesAdjustSteps`
 
 This is another key feature of color schemes. This one creates a set of lighter and darker colors for every color of your schemes. 
@@ -179,7 +179,7 @@ If you set fewer steps, and then understand that it is not enough and set up mor
 
 - **Note:** too light or too bright color may have been generated into inappropriate set of lighter and darker colors, so sometimes it is better to light and dark colors as a separate ones in a scheme.
 
-
+---
 #### `metaThemeColor`
 
 Used as `<meta name="theme-color" content="#dee600">` in the `<head>` section to hightlight a browser tab in Chrome on Android devices.
@@ -188,7 +188,7 @@ Used as `<meta name="theme-color" content="#dee600">` in the `<head>` section to
 metaThemeColor: "#dee600"
 ```
 
-
+---
 #### `colorGuides`
 
 Color of guides in Layout Helpers module.
@@ -202,7 +202,7 @@ colorGuides: "#ff0080"
 
 In `grid` you set up everything to handle your layout within your grid system. And some extra features also! Let's see.
 
-
+---
 #### `breakpoints`
 
 Sets breakpoints to create all the basic stuff: classes for layouts, media queries, functions, and mixins in Sass.
@@ -220,7 +220,7 @@ breakpoints:
   xl: 1200
 ```
 
-
+---
 #### `breakpointsUnit`
 
 Set units which will be applied to breakpoints values. In case you need something but `px` by default (you may read the article "[PX, EM or REM Media Queries?](https://zellwk.com/blog/media-query-units/)"
@@ -229,7 +229,7 @@ Set units which will be applied to breakpoints values. In case you need somethin
 breakpointsUnit: px
 ```
 
-
+---
 #### `layoutMinWidth`
 
 Sets `min-width` property for `<body>`. Should be less than the second breakpoint, so the first one could be applied instead of adding x-scroll.
@@ -238,7 +238,7 @@ Sets `min-width` property for `<body>`. Should be less than the second breakpoin
 layoutMinWidth: 320px
 ```
 
-
+---
 #### `columns`
 
 Amount of columns in your grid.
@@ -266,7 +266,7 @@ e. g.: `=screen(sm)`, `=screen-max(md)`, `=screen-only(lg)`.
 **Note:** you never have classes for the first breakpoint. Instead `col-xs-10`  or `offset-xs-2` you should use `col-10`  or `offset-2`. 
 The reason is that the first breakpoint affects any width from "0 to ∞" until you reassign the behavior with any other breakpoint. So naming keeps that logic: *"not getting from some width and higher"* but *"just getting any width"*. Think the behavior is more simple than the explanation.
 
-
+---
 #### `gutters`
 
 Defines left and right margin for each of elements: `.wrapper`, `.container`, `.row`, and all of `.col-*-*`. The cool thing is that you can define margins for every breakpoint separately. For example, you may not be having gutters between columns on smaller devices, but turn them on for large screens.
@@ -279,7 +279,7 @@ gutters:
   col: "(xs: 8px, md: 16px)"
 ```
 
-
+---
 #### `fixWrapperWidth`
 
 On every listed breakpoint `.wrapper` would become fixed with a width equal to this breakpoint. By default, `.wrapper` (and so `.container`, `.row`, and all of `.col-*-*`) is fluid.
@@ -293,7 +293,7 @@ fixWrapperWidth: "(md, xl)"
 # fixWrapperWidth: false
 ```
 
-
+---
 #### `rotateBackMap`
 
 This thing is used in a default component `rotate-back`. The component hides all of the content and shows the screens where you can ask to rotate user's device to another orientation.
@@ -310,7 +310,7 @@ rotateBackMap: false
 
 Forget about calculating margins and paddings in your head or write them in your styles manually each time. Set them in `spacers` and use as classes and mixins.
 
-
+---
 #### `spacer`
 
 This is a key setting to define a minimum step or a multiplier for your spacing system. The default value of 8px is most common (read "[Intro to The 8-Point Grid System](https://builttoadapt.io/intro-to-the-8-point-grid-system-d2573cde8632)" to know more), but you can define whatever you want and any unit you want (e. g., *rem*).
@@ -319,7 +319,7 @@ This is a key setting to define a minimum step or a multiplier for your spacing 
 spacer: 8px
 ```
 
-
+---
 #### `spacerMap`
 
 List of predefined spacers, which are used as a multilpler for a main `spacer` setting. 
@@ -345,7 +345,7 @@ The names (a, b, c, d, e) is totally up to you. Behind the scenes, it creates cl
 - `.mb-a` (means `margin-bottom: 8px`, cause `a: "(xs: 1)"`);
 - `+padding(y, d)` which will be compiled in CSS `padding-top: 48px; padding-bottom: 48px`, cause `d: "(xs: 6)"` and 6 * 8px = 48px.
 
-
+---
 #### `defaultMarginY`
 
 This section depends on what you defined in the previous one. Set default top and bottom margins for any of these key elements of the layout, and they will be applied automatically. Remember, `.wrapper` and `.row` are flex-containers, so vertical margins will not collapse.
@@ -357,7 +357,7 @@ defaultMarginY:
   col: false
 ```
 
-
+---
 #### `defaultColPadding`
 
 Default padding for every `.col-*-*` element. Applies the same padding for top, right, bottom, and left sides.
@@ -374,7 +374,7 @@ defaultColPadding: false
 
 The idea is that in `typography` you set the basics, but the detailed tune of your headings, paragraphs, and all of the other text elements you do by yourself.
 
-
+---
 #### `fontsInclude`
 
 List of fonts that you manually upload into `src/assets/fonts/`. 
@@ -389,7 +389,7 @@ fontsInclude:
 
 So each setting is basically **"{ *fontname* }"**, so the example above will include fonts from `src/assets/fonts/Roboto-Regular.(woff/woff2)` and `src/assets/fonts/Roboto-Bold.(woff/woff2)`. The numeric parameter will set up a `font-weight` in CSS. 
 
-
+---
 #### `fontsGoogle`
 
 Fonts from GoogleFonts. Everything is pretty simple.
@@ -399,7 +399,7 @@ fontsGoogle:
   PT Serif: "https://fonts.googleapis.com/css?family=PT+Serif&display=swap"
 ```
 
-
+---
 #### `fontMain` and `fontStyle`
 
 `fontMain` is the font which is set as a `font-family` for the whole document. 
@@ -422,7 +422,7 @@ body {
 }
 ```
 
-
+---
 #### `htmlFontSize`, `fontSizeBase`, `lineHeightBase` and `fontWeightBase`
 
 Basic settings for fonts. Use any possible settings according to CSS spec.
