@@ -82,7 +82,9 @@ Defines how many intermediate gray colors will be created between `white` and `b
 By default, it will create `gray-1` (the lightest gray), `gray-2`, `gray-3`, `gray-4`, and `gray-5` (the darkest gray).
 
 ```yaml
-baseAdjustSteps: 10    # 0 — 20
+baseAdjustSteps: 10
+
+# 0 — 20
 ```
 
 
@@ -160,7 +162,9 @@ Then look at `<head>` section of your every `*.html`: there's already a script w
 This is another key feature of color schemes. This one creates a set of lighter and darker colors for every color of your schemes. 
 
 ```yaml
-schemesAdjustSteps: 5    # 0 — 5
+schemesAdjustSteps: 5    
+
+# 0 — 5
 ```
 
 They are named with two prefixes: **{ *color-name* }-{ *l/d* }-{ *from 1 to amount of steps* }**, so you get something like `brand-l-5` as the lightest and `brand-d-5` as the darkest of `brand` itself. Usage is the same: 
