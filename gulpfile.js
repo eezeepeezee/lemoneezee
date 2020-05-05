@@ -42,13 +42,13 @@ const configGlobal = './config.yml';
 /* Define all paths */
 
 const paths = {
-  app: {
-    __core:     'app/__core/',
-    assets:     'app/assets/',
-    components: 'app/components/',
-    includes:   'app/includes/',
-    layouts:    'app/layouts/',
-    pages:      'app/pages/',
+  src: {
+    __core:     'src/__core/',
+    assets:     'src/assets/',
+    components: 'src/components/',
+    includes:   'src/includes/',
+    layouts:    'src/layouts/',
+    pages:      'src/pages/',
   },
   build: 'build/',
 };
@@ -59,8 +59,8 @@ const paths = {
 function browserSyncInit(done) {
   browserSync.init({
     server: {
-      baseDir: 'app',
-      index: 'app-pages.html',
+      baseDir: 'src',
+      index: 'src-pages.html',
     },
     notify: false,
     port: 3000,
@@ -80,7 +80,7 @@ function runbuild(done) {
   browserSync.init({
     server: {
       baseDir: 'build',
-      index: 'app-pages.html',
+      index: 'src-pages.html',
     },
     notify: false,
     port: 3000,
@@ -95,12 +95,12 @@ function config() {
 //  console.log(readYaml.sync('./config.yml'));
   
   return gulp
-    .src(`${paths.app.__core}__config/__templates/sass-config.txt`)
+    .src(`${paths.src.__core}__config/__templates/sass-config.txt`)
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(template(readYaml.sync(configGlobal)))
     .pipe(rename('_config.sass'))
     .pipe(removeEmptyLines({}))
-    .pipe(gulp.dest(`${paths.app.__core}__config/`));    
+    .pipe(gulp.dest(`${paths.src.__core}__config/`));    
   
 }
 
@@ -109,33 +109,33 @@ function config() {
 
 function layoutHelpers() {
   return gulp
-    .src([`${paths.app.__core}__layout-helpers/layout-helpers.twig`])
+    .src([`${paths.src.__core}__layout-helpers/layout-helpers.twig`])
     .pipe(data(() => readYaml.sync(configGlobal)))
     .pipe(twig())
-    .pipe(gulp.dest(`${paths.app.__core}__layout-helpers/`));
+    .pipe(gulp.dest(`${paths.src.__core}__layout-helpers/`));
 }
 
 
-/* Compiling twig into html from ./app/pages based on twig-templates from ./app/{components|includes|layouts} */
+/* Compiling twig into html from ./src/pages based on twig-templates from ./src/{components|includes|layouts} */
 
 /* Delete all generated files */
 
 function htmlClean() {
   return gulp
-    .src([`${paths.app}*.html`], { read: false, force: true })
+    .src([`${paths.src}*.html`], { read: false, force: true })
     .pipe(cleaner());
 }
 
 
-/* Compile html from ./app/pages */
+/* Compile html from ./src/pages */
 
 function htmlPages() {
   return gulp
-    .src([`${paths.app.pages}*.twig`])
+    .src([`${paths.src.pages}*.twig`])
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(data(() => readYaml.sync(configGlobal)))
-    .pipe(twig({ base: 'app/' }))
-    .pipe(gulp.dest('app'));
+    .pipe(twig({ base: 'src/' }))
+    .pipe(gulp.dest('src'));
 }
 
 
@@ -143,12 +143,12 @@ function htmlPages() {
 
 function htmlLinks() {
   return gulp
-    .src(`${paths.app.__core}app-pages.html`)
+    .src(`${paths.src.__core}src-pages.html`)
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(inject(
-      gulp.src(['app/*.html', '!app/app-pages.html'], { read: false }), {
+      gulp.src(['src/*.html', '!src/src-pages.html'], { read: false }), {
         transform(filepath) {
-          filepath = filepath.split('/app/').join('');
+          filepath = filepath.split('/src/').join('');
           if (filepath.slice(-5) === '.html') {
             return `<li><a href="${filepath}">${filepath}</a></li>`;
           }
@@ -156,7 +156,7 @@ function htmlLinks() {
         },
       },
     ))
-    .pipe(gulp.dest('app'));
+    .pipe(gulp.dest('src'));
 }
 
 
@@ -165,11 +165,11 @@ const html = gulp.series(htmlClean, htmlPages, htmlLinks);
 
 /* Compiling Sass into common style.min.css and divided __libs/ */
 
-/* Compiling all sass into app/assets/css/** */
+/* Compiling all sass into src/assets/css/** */
 
 function cssCompile() {
   return gulp
-    .src([`${paths.app.__core}__core-sass/**/*.sass`])
+    .src([`${paths.src.__core}__core-sass/**/*.sass`])
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(sourcemaps.init({largeFile: true}))
     .pipe(sassGlob())
@@ -178,7 +178,7 @@ function cssCompile() {
     .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, colormin: false }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.write('/maps'))
-    .pipe(gulp.dest(`${paths.app.assets}css/`));
+    .pipe(gulp.dest(`${paths.src.assets}css/`));
 }
 
 
@@ -186,23 +186,23 @@ function cssCompile() {
 
 function cssPlace() {
   return gulp
-    .src(`${paths.app.includes}head.twig`)
+    .src(`${paths.src.includes}head.twig`)
     .pipe(inject(gulp.src([
-      `${paths.app.assets}css/libs/normalize.min.css`,
-      `${paths.app.assets}css/libs/*.css`,
-      `${paths.app.assets}css/*.css`],
+      `${paths.src.assets}css/libs/normalize.min.css`,
+      `${paths.src.assets}css/libs/*.css`,
+      `${paths.src.assets}css/*.css`],
     { read: false }),
     {
       transform(filepath) {
         let filepathSave = filepath;
         if (filepathSave) {
-          filepathSave = filepath.split('app/').join('');
+          filepathSave = filepath.split('src/').join('');
           return `<link rel="stylesheet" href="${filepathSave}">`;
         }
         return inject.transform.apply(inject.transform);
       },
     }))
-    .pipe(gulp.dest(paths.app.includes));
+    .pipe(gulp.dest(paths.src.includes));
 }
 
 
@@ -215,29 +215,29 @@ function jsComponents() {
   /* Compile common.js and other default js if will be */
 
   const jsCommon = gulp
-    .src([`${paths.app.__core}__core-js/*.js`])
+    .src([`${paths.src.__core}__core-js/*.js`])
     .pipe(babel())
     .pipe(rename({ suffix: '.min' }))
-    .pipe(gulp.dest(`${paths.app.assets}js/`));
+    .pipe(gulp.dest(`${paths.src.assets}js/`));
 
 
   /* Compiling components.min.js from separate js-files */
 
   const jsComponentsBundle = gulp
-    .src([`${paths.app.components}**/*.js`, `!${paths.app.components}**/%*.js`])
+    .src([`${paths.src.components}**/*.js`, `!${paths.src.components}**/%*.js`])
     .pipe(sourcemaps.init({largeFile: true}))
     .pipe(concat('components.min.js'))
     .pipe(header('window.addEventListener(\'load\', function() {'))
     .pipe(footer('});'))
     .pipe(babel())
     .pipe(sourcemaps.write('/maps'))
-    .pipe(gulp.dest(`${paths.app.assets}js/`));
+    .pipe(gulp.dest(`${paths.src.assets}js/`));
 
 
   /* Get separate js-files, marked with % */
 
   const jsComponentsSeparate = gulp
-    .src([`${paths.app.components}**/%*.js`])
+    .src([`${paths.src.components}**/%*.js`])
     .pipe(rename((path) => {
       const pathSave = path;
       pathSave.dirname = '/';
@@ -246,7 +246,7 @@ function jsComponents() {
       return pathSave;
     }))
     .pipe(babel())
-    .pipe(gulp.dest(`${paths.app.assets}js/`));
+    .pipe(gulp.dest(`${paths.src.assets}js/`));
 
 
   return merge(jsCommon, jsComponentsBundle, jsComponentsSeparate);
@@ -257,35 +257,35 @@ function jsComponents() {
 
 function jsPlace() {
   return gulp
-    .src(`${paths.app.includes}scripts.twig`)
+    .src(`${paths.src.includes}scripts.twig`)
     .pipe(inject(gulp.src([
-      `${paths.app.__core}__core-js/libs/*.js`,
-      `${paths.app.assets}js/libs/*.js`,
-      `${paths.app.__core}__layout-helpers/layout-helpers.js`,
-      `${paths.app.assets}js/common.min.js`,
-      `${paths.app.assets}js/components.min.js`],
+      `${paths.src.__core}__core-js/libs/*.js`,
+      `${paths.src.assets}js/libs/*.js`,
+      `${paths.src.__core}__layout-helpers/layout-helpers.js`,
+      `${paths.src.assets}js/common.min.js`,
+      `${paths.src.assets}js/components.min.js`],
     { read: false }),
     {
       transform(filepath) {
         if (filepath) {
-          filepath = filepath.split('app/').join('');
+          filepath = filepath.split('src/').join('');
           return `<script src="${filepath}"></script>`;
         }
         return inject.transform.apply(inject.transform);
       },
     }))
-    .pipe(gulp.dest(paths.app.includes));
+    .pipe(gulp.dest(paths.src.includes));
 }
 
 
 const js = gulp.series(jsComponents, jsPlace);
 
 
-/* Creating SVG-sprite from all .svg files in app/assets/img/icons/src */
+/* Creating SVG-sprite from all .svg files in src/assets/img/icons/src */
 
 function svgIconsSprite() {
   return gulp
-    .src([`${paths.app.assets}img/icons/src/*.svg`])
+    .src([`${paths.src.assets}img/icons/src/*.svg`])
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(svgmin({ js2svg: { pretty: true } }))
     .pipe(cheerio({
@@ -299,7 +299,7 @@ function svgIconsSprite() {
     }))
     .pipe(replace('&gt;', '>'))
     .pipe(svgSprite({ mode: { symbol: { sprite: '../sprite.svg' } } }))
-    .pipe(gulp.dest([`${paths.app.assets}img/icons/`]));
+    .pipe(gulp.dest([`${paths.src.assets}img/icons/`]));
 }
 
 
@@ -313,10 +313,10 @@ function clean() {
 /* Tasks for build */
 
 function buildHtml() {
-  /* Update css and js import right into app/*.html */
+  /* Update css and js import right into src/*.html */
 
   return gulp
-    .src(['app/*.html'])
+    .src(['src/*.html'])
     .pipe(replace(
       /<!-- inject:css -->(.*?(\r?\n))+.*?(css">)(\r?\n)?<!-- endinject -->/g,
       '<link rel="stylesheet" href="/assets/css/libs.min.css">\r\n<link rel="stylesheet" href="/assets/css/common.min.css">\r\n<script>if(\'CSS\' in window&&CSS.supports(\'color\',\'var(--color-var)\')){}else{document.write(\'<link rel="stylesheet" href="/assets/css/common.default.min.css">\')}</script><noscript><link rel="stylesheet" href="/assets/css/common.default.min.css"></noscript>',
@@ -334,7 +334,7 @@ function buildCss() {
   const colorVarsSet = {};
 
   /* All css variables for colors */
-  let colorVarsCss = fs.readFileSync(`${paths.app.assets}css/color-vars.min.css`, 'utf8');
+  let colorVarsCss = fs.readFileSync(`${paths.src.assets}css/color-vars.min.css`, 'utf8');
   
   /* Get rid of maps block and extra :root selector */
   colorVarsCss = colorVarsCss.replace(/\r?\n*?\/\*#(.*?)\*\//g, '');
@@ -375,7 +375,7 @@ function buildCss() {
 
   /* Get initial common.min.css and parse it into object */
 
-  const commoncss = fs.readFileSync(`${paths.app.assets}css/common.min.css`, 'utf8');
+  const commoncss = fs.readFileSync(`${paths.src.assets}css/common.min.css`, 'utf8');
   let cssParsed = cssParser.parse(commoncss);
 
   let rules = cssParsed.stylesheet.rules;
@@ -446,7 +446,7 @@ function buildCss() {
   /* Compile all css libs into one */
 
   const buildCssLibs = gulp
-    .src([`${paths.app.assets}css/libs/*.css`])
+    .src([`${paths.src.assets}css/libs/*.css`])
     .pipe(concat('libs.min.css'))
     .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));
@@ -455,7 +455,7 @@ function buildCss() {
   /* Build color-vars.min.css and common.min.css into one */
 
   const buildCssCommon = gulp
-    .src([`${paths.app.assets}css/color-vars.min.css`, `${paths.app.assets}css/common.min.css`])
+    .src([`${paths.src.assets}css/color-vars.min.css`, `${paths.src.assets}css/common.min.css`])
     .pipe(concat('common.min.css'))
     .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));
@@ -464,7 +464,7 @@ function buildCss() {
   /* Move separate css files but layout-helpers */
 
   const buildCssSeparate = gulp
-    .src([`${paths.app.assets}css/**/*.css`, `!${paths.app.assets}css/libs/*.css`, `!${paths.app.assets}css/color-vars.min.css`, `!${paths.app.assets}css/common.min.css`, `!${paths.app.assets}css/layout-helpers.min.css`])
+    .src([`${paths.src.assets}css/**/*.css`, `!${paths.src.assets}css/libs/*.css`, `!${paths.src.assets}css/color-vars.min.css`, `!${paths.src.assets}css/common.min.css`, `!${paths.src.assets}css/layout-helpers.min.css`])
     .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));
 
@@ -477,7 +477,7 @@ function buildFonts() {
   /* Moving fonts */
 
   return gulp
-    .src([`${paths.app.assets}fonts/**/*.*`])
+    .src([`${paths.src.assets}fonts/**/*.*`])
     .pipe(gulp.dest(`${paths.build}assets/fonts/`));
 }
 
@@ -486,7 +486,7 @@ function buildImg() {
   /* Moving images */
 
   return gulp
-    .src([`${paths.app.assets}img/**/*.*`])
+    .src([`${paths.src.assets}img/**/*.*`])
     .pipe(gulp.dest(`${paths.build}assets/img/`));
 }
 
@@ -495,7 +495,7 @@ function buildJs() {
   /* Compile all js libs into one */
 
   const buildJsLibs = gulp
-    .src([`${paths.app.__core}__core-js/libs/*.js`, `${paths.app.assets}js/libs/*.js`])
+    .src([`${paths.src.__core}__core-js/libs/*.js`, `${paths.src.assets}js/libs/*.js`])
     .pipe(babel())
     .pipe(concat('libs.min.js'))
     .pipe(uglify())
@@ -505,7 +505,7 @@ function buildJs() {
   /* Compile common.js */
 
   const buildJsCommon = gulp
-    .src([`${paths.app.__core}__core-js/common.js`])
+    .src([`${paths.src.__core}__core-js/common.js`])
     .pipe(rename({ suffix: '.min' }))
     .pipe(babel())
     .pipe(uglify())
@@ -515,7 +515,7 @@ function buildJs() {
   /* Compile separate components (everything but libs) */
 
   const buildJsComponents = gulp
-    .src([`${paths.app.assets}js/**/*.js`, `!${paths.app.assets}js/libs/*.js`])
+    .src([`${paths.src.assets}js/**/*.js`, `!${paths.src.assets}js/libs/*.js`])
     .pipe(babel())
     .pipe(uglify())
     .pipe(gulp.dest(`${paths.build}assets/js/`));
@@ -524,30 +524,30 @@ function buildJs() {
 }
 
 
-/* Preparing whole app before watch or build */
+/* Preparing whole src before watch or build */
 
-const appPrepare = gulp.series(config, layoutHelpers, css, js, html, svgIconsSprite);
+const srcPrepare = gulp.series(config, layoutHelpers, css, js, html, svgIconsSprite);
 
 
 /* Watcher */
 
 function watchFiles() {
-  gulp.watch(['app/{components,includes,layouts,pages}/**/*.twig'], gulp.series(html, browserSyncReload));
-  gulp.watch([`${paths.app.__core}__core-sass/**/*.sass`, 'app/{components,layouts,pages}/**/*.sass'], gulp.series(css, browserSyncReload));
-  gulp.watch([`${paths.app.assets}img/**/*.*`], browserSyncReload);
-  gulp.watch([`${paths.app.__core}__core-js/common.js`, `${paths.app.js}*.js`, `${paths.app.assets}js/*.js`, `!${paths.app.assets}js/*.min.js`, `${paths.app.components}**/*.js`], gulp.series(js, browserSyncReload));
+  gulp.watch(['src/{components,includes,layouts,pages}/**/*.twig'], gulp.series(html, browserSyncReload));
+  gulp.watch([`${paths.src.__core}__core-sass/**/*.sass`, 'src/{components,layouts,pages}/**/*.sass'], gulp.series(css, browserSyncReload));
+  gulp.watch([`${paths.src.assets}img/**/*.*`], browserSyncReload);
+  gulp.watch([`${paths.src.__core}__core-js/common.js`, `${paths.src.assets}js/*.js`, `!${paths.src.assets}js/*.min.js`, `${paths.src.components}**/*.js`], gulp.series(js, browserSyncReload));
 }
 
 
 /* Watcher and builder series */
 
-const watch = gulp.series(appPrepare, gulp.parallel(watchFiles, browserSyncInit));
-const build = gulp.series(clean, appPrepare, gulp.parallel(buildHtml, buildCss, buildFonts, buildImg, buildJs));
+const watch = gulp.series(srcPrepare, gulp.parallel(watchFiles, browserSyncInit));
+const build = gulp.series(clean, srcPrepare, gulp.parallel(buildHtml, buildCss, buildFonts, buildImg, buildJs));
 
 
 /* Available tasks from command line */
-exports.config = config;
-exports.runapp = watch;
-exports.build = build;
-exports.runbuild = runbuild;
-exports.default = watch;
+exports.config    = config;
+exports.watch     = watch;
+exports.build     = build;
+exports.runbuild  = runbuild;
+exports.default   = watch;

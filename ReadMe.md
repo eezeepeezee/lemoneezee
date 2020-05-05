@@ -1,4 +1,4 @@
-![LemonEezee frontend-template](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/doc/src/logo_lemoneezee.png "LemonEezee frontend-template")
+![LemonEezee frontend-template](https://raw.githubusercontent.com/eezeepeezee/lemoneezee/master/docs/src/logo_lemoneezee.png "LemonEezee frontend-template")
 
 # LemonEezee
 
@@ -38,7 +38,7 @@ npm i
 Start working:
 
 ```bash
-gulp runapp
+gulp watch
 ```
 
 > While it is still alpha, full manual will be published later.
