@@ -76,7 +76,11 @@ This is a nice feature. This file is automatically compiled with the list of all
 
 This is the most useful file in the framework. Here you configure everything: colors, grids, spacers, typography to use it in templates and styles — and there will be an additional manual for this (though it is still simple, you need half an hour to remember what is what). File `config.yml` is an initial copy of `config-default.yml` which will be updated in case we will do some new stuff for configuration — so you can delete it or keep if you want to have a reference of default settings. 
 
-There are plenty of powerful things to configurate even after you've made lots of work on your project — we'll see it later.
+There are plenty of powerful things to configure even after you've made lots of work on your project — we'll see it later.
+
+### `gulpfile.js`
+
+The place where the magic happens. Or, down-to-earth, all the Gulp tasks for development and build processes.
 
 ### Other files in the root folder
 
