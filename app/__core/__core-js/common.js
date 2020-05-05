@@ -1,3 +1,11 @@
+/* Init FastClick library */
+
+if ('addEventListener' in document) {
+  document.addEventListener('DOMContentLoaded', function() {
+    FastClick.attach(document.body);
+  }, false);
+}
+
 window.addEventListener('load', () => {
 
   /* Set --window-height variable or update inline styles if custom properties are not supported */
