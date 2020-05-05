@@ -532,7 +532,7 @@ const appPrepare = gulp.series(config, layoutHelpers, css, js, html, svgIconsSpr
 /* Watcher */
 
 function watchFiles() {
-  gulp.watch(['app/{components,includes,layouts,pages}/**/*.twig'], gulp.series(htmlClean, html, browserSyncReload));
+  gulp.watch(['app/{components,includes,layouts,pages}/**/*.twig'], gulp.series(html, browserSyncReload));
   gulp.watch([`${paths.app.__core}__core-sass/**/*.sass`, 'app/{components,layouts,pages}/**/*.sass'], gulp.series(css, browserSyncReload));
   gulp.watch([`${paths.app.assets}img/**/*.*`], browserSyncReload);
   gulp.watch([`${paths.app.__core}__core-js/common.js`, `${paths.app.js}*.js`, `${paths.app.assets}js/*.js`, `!${paths.app.assets}js/*.min.js`, `${paths.app.components}**/*.js`], gulp.series(js, browserSyncReload));
