@@ -1,0 +1,27 @@
+{%- if style is defined and style != '' -%}
+  {%- set style = ' icon--' ~ style -%}
+{%- else -%}
+  {%- set style = '' -%}
+{%- endif -%} 
+
+{%- if class is defined and class != '' -%}
+  {%- set class = ' ' ~ class -%}
+{%- else -%}
+  {%- set class = '' -%}
+{%- endif -%} 
+
+{%- if attributes is defined and attributes != '' -%}
+  {%- set attributes = ' ' ~ attributes -%}
+{%- else -%}
+  {%- set attributes = '' -%}
+{%- endif -%} 
+
+{%- if icon -%}
+<span class="icon{{ style }}{{ class }}"{{ attributes }}>
+  <svg class="icon__svg">
+    <use xlink:href="./assets/img/icons/sprite.svg#{{ icon }}"></use>
+  </svg>  
+</span>
+{%- else -%}
+<span class="icon icon--empty"></span>
+{%- endif -%}
