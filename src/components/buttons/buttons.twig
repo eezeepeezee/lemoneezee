@@ -22,10 +22,6 @@
   {%- set classCompiled = classCompiled ~ ' button--round' -%}
 {%- endif -%}
 
-{%- if iconType is defined and iconType == 'only' -%}
-  {%- set ariaLabel = text -%}
-{%- endif -%}
-
 {%- if attributes is defined and attributes != '' -%}
   {%- set attributes = ' ' ~ attributes -%}
 {%- else -%}

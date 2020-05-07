@@ -31,10 +31,9 @@ lemoneezee/
 
 This system is even more simple than it seems to be. 
 
-First, two little rules for the whole framework:
+First, one common rule for the whole framework:
 
-1. **__{foldername}** — if folder name starts with two underscores (now it is `src/__core/` and everything inside it), it means, that it is vital and may be fully updated on every next release, so you'd better don't touch it at all. Or at your own risk. 
-2. **le_{foldername/filename}** — if the folder or file name starts with **"le_"**, it means that this is an example of something (e.g. component or layout) and can be used after copying it and removing the prefix. It may also be updated on any of the next releases. 
+1. **__{foldername}** — if folder name starts with two underscores (now it is `src/__core/` and everything inside it), it means, that it is vital and may be fully updated on every next release, so you'd better don't touch it at all. Or at your own risk.
 
 ## What is what
 

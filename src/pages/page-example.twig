@@ -1,0 +1,36 @@
+{% extends '/layouts/layout-example.twig' %}
+{% set title = 'Page Example' %}
+
+{% block content %}
+  
+<div class="container">
+  <div class="row">
+    <div class="col-fluid">
+      <h1>LemonEezee frontend template</h1>
+      
+{% include '/components/buttons/buttons.twig' with 
+    {
+      text: 'Click Me'
+    } 
+%}
+     
+{% include '/components/icons/icons.twig' with 
+    { 
+      icon: 'icon-name'
+    } 
+%}  
+     
+{% include '/components/icons/icons.twig' with 
+    { 
+      icon: 'icon-name', 
+      style: 'color-name', 
+      class: 'additional-class other-additional-class',
+      attributes: 'aria-hidden="true"' 
+    } 
+%}
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}
