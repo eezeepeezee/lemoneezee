@@ -1,0 +1,22 @@
+.icon
+  display: inline-block
+  width: 48px
+  height: 48px
+  
+  &__svg
+    display: block
+    width: inherit
+    height: inherit
+    fill: #000
+    
+  &--empty
+    border-radius: 50%
+    background: #ddd
+    
+    
+  /* Styling according to "default" color scheme */
+  /* Creates classes like .icon--COLORNAME */
+  
+  @each $c-color-name, $c-color-value in map-get($map-color-schemes, 'default')
+    &--#{$c-color-name} .icon__svg
+      fill: color(#{$c-color-name})  
