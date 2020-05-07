@@ -1,0 +1,45 @@
+{%- if size is defined and size != '' -%}
+  {%- set classCompiled = ' button--' ~ size -%}
+{%- endif -%}
+
+{%- if style is defined and style != '' -%}
+  {%- set classCompiled = classCompiled ~ ' button--' ~ style -%}
+{%- endif -%}
+
+{%- if iconType is defined and iconType != '' -%}
+  {%- if iconType == 'side' -%}
+    {%- set classCompiled = classCompiled ~ ' button--icon' -%}
+  {%- elseif iconType == 'only' -%}
+    {%- set classCompiled = classCompiled ~ ' button--icon-only' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- if class is defined and class != '' -%}
+  {%- set classCompiled = classCompiled ~ ' ' ~ class -%}
+{%- endif -%}
+
+{%- if round is defined and round != '' -%}
+  {%- set classCompiled = classCompiled ~ ' button--round' -%}
+{%- endif -%}
+
+{%- if iconType is defined and iconType == 'only' -%}
+  {%- set ariaLabel = text -%}
+{%- endif -%}
+
+{%- if attributes is defined and attributes != '' -%}
+  {%- set attributes = ' ' ~ attributes -%}
+{%- else -%}
+  {%- set attributes = '' -%}
+{%- endif -%}
+
+<button type="{{ type|default('button') }}" class="button{{ classCompiled }}" aria-label="{{ ariaLabel }}"{{ attributes }}>
+  {%- if iconType == 'side' or iconType == 'only' -%}
+    <span class="icon"><svg class="icon__svg"><use xlink:href="./assets/img/icons/sprite.svg#{{ icon }}"></use></svg></span>
+  {%- endif -%}
+  {%- if (iconType is defined and iconType == 'side') or (iconType is not defined) -%}
+    {{ text }}
+  {%- endif -%}
+  {%- if (desc is defined) and (iconType != 'only') -%}
+    <span class="desc">{{ desc }}</span>
+  {%- endif -%}
+</button>
