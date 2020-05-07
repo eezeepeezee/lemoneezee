@@ -6,10 +6,12 @@ The twig template generates `<span class="icon">...</span>` with an svg icon ins
 
 ## Usage
 
+> Rename `le_icons` folder into `icons` to avoid rewriting the component on the framework update, so you may change anything inside safely.
+
 ### Required settings
 
 ```twig
-{% include '/components/le_icons/icons.twig' with { icon: 'icon-name' } %}
+{% include '/components/icons/icons.twig' with { icon: 'icon-name' } %}
 ```
 
 Parameters:
@@ -19,7 +21,7 @@ Parameters:
 ### Optional settings
 
 ```twig
-{% include '/components/le_icons/icons.twig' with 
+{% include '/components/icons/icons.twig' with 
     { 
       icon: 'icon-name', 
       style: 'color-name', 
