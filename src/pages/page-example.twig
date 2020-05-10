@@ -6,29 +6,16 @@
 <div class="container">
   <div class="row">
     <div class="col-fluid">
-      <h1>LemonEezee frontend template</h1>
-      
-{% include '/components/buttons/buttons.twig' with 
-    {
-      text: 'Click Me'
-    } 
-%}
-     
-{% include '/components/icons/icons.twig' with 
-    { 
-      icon: 'icon-name'
-    } 
-%}  
-     
-{% include '/components/icons/icons.twig' with 
-    { 
-      icon: 'icon-name', 
-      style: 'color-name', 
-      class: 'additional-class other-additional-class',
-      attributes: 'aria-hidden="true"' 
-    } 
-%}
-      
+      <h1>LemonEezee frontend template</h1>      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-fluid">
+      {% include '/components/forms/fields.twig' with
+          {
+            placeholder: 'Some text'
+          }
+      %}
     </div>
   </div>
 </div>

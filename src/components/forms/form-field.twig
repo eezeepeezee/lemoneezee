@@ -1,0 +1,32 @@
+<div class="form-field">
+  
+  <div class="field-label">
+    <label for="input">Enter your name:</label>
+  </div>
+  
+  <div class="field-input f--li f--ri f--rb">    
+   
+    <input type="text" placeholder="{{ placeholder }}" class="" name="{{ name }}" id="{{ name }}" value="{{ values[0] }}" aria-describedby="error-{{ name }}"{{ disabled }}{{ required }}{{ attributes }}>
+       
+    <div class="field-l">      
+      <div class="field-icon">
+        {% include '/components/icons/icons.twig' with { icon: 'user' } %}
+      </div>
+    </div>    
+    
+    <div class="field-r">     
+      <button class="field-button" type="button" aria-label="Toggle password visibility">
+        {% include '/components/icons/icons.twig' with { icon: 'eye-open' } %}
+      </button>      
+      <div class="field-icon">
+        {% include '/components/icons/icons.twig' with { icon: 'lock' } %}
+      </div>      
+    </div>    
+    
+  </div>
+  
+  <div class="field-error">
+    <span role="alert" id="error-{{ name }}">Сообщение об ошибке в поле ввода</span>
+  </div>
+
+</div>
