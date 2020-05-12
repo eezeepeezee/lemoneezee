@@ -78,6 +78,7 @@ There are some great third-party libraries and technologies which make LemonEeze
 - [fastclick](https://github.com/ftlabs/fastclick) by FT Labs
 - [lazysizes](https://github.com/aFarkas/lazysizes) by Alexander Farkas
 - [picturefill](https://github.com/scottjehl/picturefill) by Scott Jehl
+- [svgxuse](https://github.com/Keyamoon/svgxuse) by Keyamoon
 
 ## Contributors
 
