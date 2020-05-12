@@ -122,7 +122,7 @@ function layoutHelpers() {
 
 function htmlClean() {
   return gulp
-    .src([`${paths.src}*.html`], { read: false, force: true })
+    .src([`src/*.html`], { read: false, force: true })
     .pipe(cleaner());
 }
 
