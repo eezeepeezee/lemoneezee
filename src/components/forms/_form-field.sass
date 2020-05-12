@@ -1,5 +1,72 @@
-/* Common rule for text inputs */
+/* Form elements rules */
 
+$input-height: 4rem
+
+/* We need to keep semantic of a fieldset, but get rid of styling */
+
+fieldset
+  padding: 0
+  margin: 0
+  border: 0
+  outline: 0
+  display: flex
+  flex-direction: column
+  
+  
+/* Reset form properties */
+
+form
+  width: 100%
+  
+  
+/* Custom checkboxes */
+
+.label--checkbox
+  position: relative
+  display: block
+  height: $input-height / 2
+  padding-left: space(4)
+  cursor: pointer
+  
+input[type="checkbox"] 
+  
+  & + .checkbox
+    content: ''
+    position: absolute
+    left: 0.1em
+    top: 0.2em
+    width: 1em
+    height: 1em
+    display: flex
+    box-shadow: 0 0 0 0.1em #ccc
+    background: #fff
+    pointer-events: none
+    
+    & span.icon
+      top: 0
+      width: inherit
+      height: inherit
+      visibility: hidden
+      
+  &:checked + .checkbox
+    box-shadow: 0 0 0 0.1em #8d8d8d
+    
+    & span.icon
+      visibility: visible
+      
+  &:focus + .checkbox,
+  &:focus:checked + .checkbox
+    box-shadow: 0 0 0 0.1em #8d8d8d, 0 0 0 0.2em #4460ff
+      
+  &:disabled + .checkbox
+    box-shadow: 0 0 0 0.1em #e2e2e2
+    
+  &:disabled:checked + .checkbox span.icon svg.icon__svg
+    fill: #e2e2e2
+  
+
+/* Text inputs */
+    
 input[type="email"],
 input[type="file"],
 input[type="image"],
@@ -14,17 +81,21 @@ input[type="url"]
 input
   position: relative
   height: space(6)
-  padding: 4px 8px
+  padding: 0 space(2)
   
-  
+textarea
+  width: 100%
+  height: $input-height * 4
+  line-height: $input-height / 2
+  padding: $input-height / 4 space(2)
+  resize: none
   
   
 /* Form field */
 
-$input-height: 4rem
-
 .form-field
   padding: 0
+  margin-bottom: space(4)
   display: flex
   flex-direction: column
   
@@ -38,24 +109,29 @@ $input-height: 4rem
       height: $input-height
       
     &.f--li input,
-    &.f--lb input
+    &.f--lb input,
+    &.f--li textarea,
+    &.f--lb textarea
       padding-left: $input-height
       
-    &.f--li.f--lb input
-      padding-left: $input-height * 2
+    &.f--li.f--lb input,
+    &.f--li.f--lb textarea
+      padding-left: $input-height * 2.25
       
     &.f--ri input,
-    &.f--rb input
+    &.f--rb input,
+    &.f--ri textarea,
+    &.f--rb textarea  
       padding-right: $input-height
       
-    &.f--ri.f--rb input
-      padding-right: $input-height * 2
+    &.f--ri.f--rb input,
+    &.f--ri.f--rb textarea  
+      padding-right: $input-height * 2.25
       
     & .field-l,
     & .field-r
       position: absolute
       top: 0
-      bottom: 0
       
       & .field-icon,
       & .field-button
@@ -85,15 +161,5 @@ $input-height: 4rem
   .field-error
     min-height: 2rem
     margin-top: space(2)
-    
-
-//  
-//  
-///* Textarea */
-//textarea
-//  width: 100%
-//  height: space(10)
-//  padding: 14px 8px
-//  resize: none
-//  font-size: 1rem
-//  line-height: 1.25
+    color: red
+    outline: 2px solid red
