@@ -1,6 +1,6 @@
 # Icons
 
-This component allows to include icons from `src/assets/img/icons/sprite.svg`, which is generated from all the icons from `src/assets/img/icons/src/` folder.
+This component allows to include icons from `src/assets/img/icons/sprite.svg`, which is generated from all the icons from `src/assets/img/icons/src/` folder. You can put any svg icons you want, the only rule is to make them square. They all will be optimized while sprite generating.
 
 The twig template generates `<span class="icon">...</span>` with an svg icon inside. The default size is 48x48px. When changing, always define both width and height.
 
@@ -11,7 +11,7 @@ The twig template generates `<span class="icon">...</span>` with an svg icon ins
 ### Required settings
 
 ```twig
-{% include '/components/icons/icons.twig' with { icon: 'icon-name' } %}
+{% include '/components/icons/icons.twig' with { icon: 'icon-name' } only %}
 ```
 
 Parameters:
@@ -37,7 +37,7 @@ Output:
       style: 'color-name', 
       class: 'additional-class other-additional-class',
       attributes: 'aria-hidden="true"' 
-    } 
+    } only
 %}
 ```
 

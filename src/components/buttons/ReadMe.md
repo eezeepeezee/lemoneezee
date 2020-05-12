@@ -7,11 +7,7 @@ This component gives an easy usage of different types of buttons: one line text 
 ### Required settings
 
 ```twig
-{% include '/components/buttons/buttons.twig' with 
-    {
-      text: 'Click Me'
-    } 
-%}
+{% include '/components/buttons/buttons.twig' with { text: 'Click Me' } only %}
 ```
 
 Parameters:
@@ -39,9 +35,8 @@ Output:
       iconType: 'side',
       round: true,
       class: 'loading other-additional-class',
-      attributes: 'disabled data-toggle="nav"',
-      ariaLabel: 'Please click this button'
-    } 
+      attributes: 'disabled data-toggle="nav"'
+    } only
 %}
 ```
 

@@ -1,4 +1,12 @@
-<div class="form-field">
+{% if formFieldClass is defined and formFieldClass != '' %}
+  {% set formFieldClass = ' ' ~ formFieldClass %}
+{% endif %}
+ 
+{% if fieldInputClass is defined and fieldInputClass != '' %}
+  {% set fieldInputClass = ' ' ~ fieldInputClass %}
+{% endif %}
+
+<div class="form-field{{ formFieldClass }}">
   
   {% if fieldset == true %}
     {% set fs = true %}
@@ -48,7 +56,7 @@
   <div class="field-input{{ fieldInputClass }}">    
    
     {% if type == 'text' or type == 'password' or type == 'tel' or type == 'email' %}
-      <input type="{{ type|default('text') }}" placeholder="{{ placeholder }}" class="{{ class }}" name="{{ name }}" id="{{ name }}" value="{{ value }}" aria-describedby="error-{{ name }}" {{- attributes }}>
+      <input class="{{ class }}" type="{{ type|default('text') }}" placeholder="{{ placeholder }}" name="{{ name }}" id="{{ name }}" value="{{ value }}" aria-describedby="error-{{ name }}" {{- attributes }}>
       
     {% elseif type == 'textarea' %}
       <textarea name="{{ name }}">{{ value }}</textarea>
