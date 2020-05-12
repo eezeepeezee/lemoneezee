@@ -35,10 +35,12 @@ const template = require('gulp-template');
 const twig = require('gulp-twig');
 const uglify = require('gulp-uglify');
 
+/* Variable for config */
+var configGlobal = './config-default.yml';
 
-/* Const variable for config */
-
-const configGlobal = './config.yml';
+if (fs.existsSync('./config.yml')) {
+  configGlobal = './config.yml';  
+}
 
 
 /* Define all paths */
