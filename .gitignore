@@ -3,7 +3,7 @@ build/
 todo/
 
 # all the items listed below are generated on every gulp runapp, so no need to keep them in repo
-src/__core/__config/_settings.sass
+src/__core/__config/_config.sass
 src/assets/css/libs/normalize.min.css
 src/assets/css/maps/
 src/assets/css/color-vars.min.css
