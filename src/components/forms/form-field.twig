@@ -1,0 +1,124 @@
+<div class="form-field">
+  
+  {% if fieldset == true %}
+    {% set fs = true %}
+    <fieldset>
+  {% endif %}  
+  
+  {% if (type != 'checkbox' and type != 'submit') or fs == true or (title is defined and title != '') %}  
+    <div class="field-label">
+  {% endif %}
+    
+    {% if type != 'checkbox' and type != 'submit' %}
+      <label for="{{ name }}">{{ label }}</label>
+    {% endif %}
+    
+    {% if legend is defined and legend != '' %}
+      <legend>{{ legend }}</legend>
+    {% endif %}
+    
+    {% if title is defined and title != '' %}
+      {{ title }}
+    {% endif %}
+
+  {% if (type != 'checkbox' and type != 'submit') or fs == true or (title is defined and title != '') %} 
+    </div>
+  {% endif %}
+  
+  {% set fieldInputClass = '' %}
+  {% if type == 'text' or type == 'password' or type == 'tel' or type == 'email' or type == 'textarea' %}
+    {% if leftIcon is defined and leftIcon != '' %}
+      {% set fieldInputClass = fieldInputClass ~ ' f--li' %}
+      {% set li = true %}
+    {% endif %}
+    {% if leftButton is defined and leftButton != '' %}
+      {% set fieldInputClass = fieldInputClass ~ ' f--lb' %}
+      {% set lb = true %}
+    {% endif %}
+    {% if rightIcon is defined and rightIcon != '' %}
+      {% set fieldInputClass = fieldInputClass ~ ' f--ri' %}
+      {% set ri = true %}
+    {% endif %}
+    {% if rightButton is defined and rightButton != '' %}
+      {% set fieldInputClass = fieldInputClass ~ ' f--rb' %}
+      {% set rb = true %}
+    {% endif %}
+  {% endif %}
+  
+  <div class="field-input{{ fieldInputClass }}">    
+   
+    {% if type == 'text' or type == 'password' or type == 'tel' or type == 'email' %}
+      <input type="{{ type|default('text') }}" placeholder="{{ placeholder }}" class="{{ class }}" name="{{ name }}" id="{{ name }}" value="{{ value }}" aria-describedby="error-{{ name }}" {{- attributes }}>
+      
+    {% elseif type == 'textarea' %}
+      <textarea name="{{ name }}">{{ value }}</textarea>
+      
+    {% elseif type == 'checkbox' %}
+     
+      {% if fs == true %}
+        
+        {% for item in items %}
+          <label class="label--checkbox">
+            <input type="checkbox" class="sr-only" name="{{ item.name }}" {{- item.attributes }}> {{ item.label }}
+            <span class="checkbox" aria-hidden="true">
+              {% include '/components/icons/icons.twig' with { icon: 'tick' } only %}
+            </span>
+          </label>  
+        {% endfor %}
+        
+      {% else %}
+        <label class="label--checkbox">
+          <input type="checkbox" class="sr-only" name="{{ name }}" {{- attributes }}> {{ label }}
+          <span class="checkbox" aria-hidden="true">
+            {% include '/components/icons/icons.twig' with { icon: 'tick' } only %}
+          </span>
+        </label>    
+      {% endif %}       
+      
+    {% endif %}
+       
+    
+    {% if li == true or lb == true %}
+      <div class="field-l">      
+        <div class="field-icon">
+          {% if li == true %}
+            {% include '/components/icons/icons.twig' with { icon: leftIcon } only %}
+          {% endif %}
+        </div>
+        {% if lb == true %}
+          <button class="field-button" type="button" {{- leftButtonAttributes }}>
+            {% include '/components/icons/icons.twig' with { icon: leftButton } only %}
+          </button>
+        {% endif %}
+      </div>  
+    {% endif %}
+       
+       
+    {% if ri == true or rb == true %}
+      <div class="field-r">      
+        {% if rb == true %}
+          <button class="field-button" type="button" {{- rightButtonAttributes }}>
+            {% include '/components/icons/icons.twig' with { icon: rightButton } only %}
+          </button>
+        {% endif %}
+        <div class="field-icon">
+          {% if ri == true %}
+            {% include '/components/icons/icons.twig' with { icon: rightIcon } only %}
+          {% endif %}
+        </div>
+      </div>  
+    {% endif %}
+    
+  </div>
+  
+  {% if fs == true %}
+    </fieldset>
+  {% endif %} 
+  
+  {% if showError == true %}
+    <div class="field-error">
+      <span role="alert" id="error-{{ name }}">Сообщение об ошибке в поле ввода.</span>
+    </div>
+  {% endif %}
+
+</div>

@@ -6,31 +6,70 @@
 <div class="container">
   <div class="row">
     <div class="col-fluid">
-      <h1>LemonEezee frontend template</h1>
-      
-{% include '/components/buttons/buttons.twig' with 
-    {
-      text: 'Click Me'
-    } 
-%}
-     
-{% include '/components/icons/icons.twig' with 
-    { 
-      icon: 'icon-name'
-    } 
-%}  
-     
-{% include '/components/icons/icons.twig' with 
-    { 
-      icon: 'icon-name', 
-      style: 'color-name', 
-      class: 'additional-class other-additional-class',
-      attributes: 'aria-hidden="true"' 
-    } 
-%}
-      
+      <h1>LemonEezee frontend template</h1>      
     </div>
   </div>
+  
+  <div class="row">
+   
+      <div class="col-full">
+
+        {% include '/components/forms/form-field.twig' with
+            {
+              name: 'username',
+              label: 'Как вас зовут?',
+              type: 'text',
+              placeholder: 'Напишите имя и, если хотите, фамилию',
+              attributes: 'required',
+              leftIcon: 'user',
+              leftButton: 'eye-open',
+              rightButton: 'eye-closed',
+              rightIcon: 'lock',
+              rightButtonAttributes: 'class="js-password"'      
+            } only
+        %}
+
+        {% include '/components/forms/form-field.twig' with
+            {
+              fieldset: true,
+              legend: 'Вот отмечайте, пожалуйста',
+              type: 'checkbox',
+              items: [
+                {name: 'not-robot', label: 'Я не робот', attributes: ''},
+                {name: 'am-robot', label: 'Я робот', attributes: ''}
+              ]
+            } only
+        %}
+
+      </div>
+      <div class="col-fluid">   
+        {% include '/components/forms/form-field.twig' with
+            {
+              name: 'not-robot',
+              label: 'Я не робот',
+              type: 'checkbox',
+            } only
+        %} 
+      </div>
+      <div class="col-fluid">
+        Забыли пароль?
+      </div>
+
+      <div class="break-line"></div>
+
+      <div class="col-fluid">
+        {% include '/components/buttons/buttons.twig' with 
+            {
+              text: 'Send Forn',
+              type: 'submit',
+              icon: 'user',
+              iconType: 'side'
+            } only
+        %}  
+      </div>
+    
+  </div>
+  
 </div>
 
 {% endblock %}
