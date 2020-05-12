@@ -14,21 +14,15 @@
   {%- endif -%}
 {%- endif -%}
 
-{%- if class is defined and class != '' -%}
-  {%- set classCompiled = classCompiled ~ ' ' ~ class -%}
-{%- endif -%}
-
 {%- if round is defined and round != '' -%}
   {%- set classCompiled = classCompiled ~ ' button--round' -%}
 {%- endif -%}
 
-{%- if attributes is defined and attributes != '' -%}
-  {%- set attributes = ' ' ~ attributes -%}
-{%- else -%}
-  {%- set attributes = '' -%}
+{%- if class is defined and class != '' -%}
+  {%- set classCompiled = classCompiled ~ ' ' ~ class -%}
 {%- endif -%}
 
-<button type="{{ type|default('button') }}" class="button{{ classCompiled }}" aria-label="{{ ariaLabel }}"{{ attributes }}>
+<button class="button{{ classCompiled }}" type="{{ type|default('button') }}" {{- attributes }}>
   {%- if iconType == 'side' or iconType == 'only' -%}
     <span class="icon"><svg class="icon__svg"><use xlink:href="./assets/img/icons/sprite.svg#{{ icon }}"></use></svg></span>
   {%- endif -%}

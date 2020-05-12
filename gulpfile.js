@@ -16,10 +16,12 @@ const fs = require('fs');
 const fsExtra = require('fs-extra');
 const gulp = require('gulp');
 const header = require('gulp-header');
+const htmlMin = require('gulp-htmlmin');
 const inject = require('gulp-inject');
 const merge = require('merge-stream');
 // const path = require('path');
 const plumber = require('gulp-plumber');
+const prettyHtml = require('gulp-pretty-html');
 const readYaml = require('read-yaml');
 const removeEmptyLines = require('gulp-remove-empty-lines');
 const rename = require('gulp-rename');
@@ -135,6 +137,7 @@ function htmlPages() {
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(data(() => readYaml.sync(configGlobal)))
     .pipe(twig({ base: 'src/' }))
+    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('src'));
 }
 
@@ -156,6 +159,7 @@ function htmlLinks() {
         },
       },
     ))
+    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('src'));
 }
 
@@ -308,7 +312,7 @@ function svgIconsSprite() {
 function clean() {
   return del(`${paths.build}**/*.*`);
 }
-
+			
 
 /* Tasks for build */
 
@@ -325,6 +329,7 @@ function buildHtml() {
       /<!-- inject:js -->(.*?(\r?\n))+.*?(script>)(\r?\n)?<!-- endinject -->/g,
       '<script src="/assets/js/libs.min.js"></script>\r\n<script src="/assets/js/common.min.js"></script>\r\n<script src="/assets/js/components.min.js"></script>',
     ))
+    .pipe(prettyHtml({ indent_size: 2, end_with_newline: true }))
     .pipe(gulp.dest(paths.build));
 }
 
@@ -534,8 +539,9 @@ const srcPrepare = gulp.series(config, layoutHelpers, css, js, html, svgIconsSpr
 function watchFiles() {
   gulp.watch(['src/{components,includes,layouts,pages}/**/*.twig'], gulp.series(html, browserSyncReload));
   gulp.watch([`${paths.src.__core}__core-sass/**/*.sass`, 'src/{components,layouts,pages}/**/*.sass'], gulp.series(css, browserSyncReload));
-  gulp.watch([`${paths.src.assets}img/**/*.*`], browserSyncReload);
+  gulp.watch([`${paths.src.assets}img/**/*.*`, `!${paths.src.assets}img/icons/**/*.svg`], browserSyncReload);
   gulp.watch([`${paths.src.__core}__core-js/common.js`, `${paths.src.assets}js/*.js`, `!${paths.src.assets}js/*.min.js`, `${paths.src.components}**/*.js`], gulp.series(js, browserSyncReload));
+  gulp.watch([`${paths.src.assets}img/icons/src/*.svg`], gulp.series(svgIconsSprite, browserSyncReload));
 }
 
 
