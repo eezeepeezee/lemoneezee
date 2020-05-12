@@ -153,19 +153,25 @@ $map-partials: (1: 'full', 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: '
   @if $margin
     max-width: calc(#{percentage($i / $grid-columns)} - #{$margin})
     flex: 1 0 calc(#{percentage($i / $grid-columns)} - #{$margin})
-    flex-basis: calc(#{percentage($i / $grid-columns)} - #{$margin})
+    +ie
+      flex-basis: calc(#{percentage($i / $grid-columns)} - #{$margin})
   @else
     max-width: percentage($i / $grid-columns)
     flex: 1 0 percentage($i / $grid-columns)
-    flex-basis: percentage($i / $grid-columns)
+    +ie
+      flex-basis: percentage($i / $grid-columns)
   
 =calc-col-width-partial($partial-part, $margin: null)
   @if $margin
     max-width: calc(#{percentage(1 / $partial-part)} - #{$margin})
     flex: 1 0 calc(#{percentage(1 / $partial-part)} - #{$margin}) 
+    +ie
+      flex-basis: calc(#{percentage(1 / $partial-part)} - #{$margin})
   @else
     max-width: percentage(1 / $partial-part)
     flex: 1 0 percentage(1 / $partial-part) 
+    +ie
+      flex-basis: percentage(1 / $partial-part)
   
 =col-width
   $margin: 0
