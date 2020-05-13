@@ -207,7 +207,7 @@ In `grid` you set up everything to handle your layout within your grid system. A
 
 Sets breakpoints to create all the basic stuff: classes for layouts, media queries, functions, and mixins in Sass.
 
-You can use any breakpoint names instead of default ones and define as many as you need (but at least — one). Remember, LemonEezee is a mobile fist, so each breakpoint means *"this size and everything larger".* 
+You can use any breakpoint names instead of default ones and define as many as you need (but at least — two for correct calculation of all the grid stuff). Remember, LemonEezee is a mobile fist, so each breakpoint means *"this size and everything larger".* 
 
 ```yaml
 # the first breakpoint must be equal to 0
