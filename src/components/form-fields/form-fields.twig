@@ -86,12 +86,12 @@
        
     
     {% if li == true or lb == true %}
-      <div class="field-l">      
-        <div class="field-icon">
-          {% if li == true %}
-            {% include '/components/icons/icons.twig' with { icon: leftIcon } only %}
-          {% endif %}
+      <div class="field-l"> 
+        {% if li == true %}     
+        <div class="field-icon">          
+          {% include '/components/icons/icons.twig' with { icon: leftIcon } only %}
         </div>
+        {% endif %}
         {% if lb == true %}
           <button class="field-button" type="button" {{- leftButtonAttributes }}>
             {% include '/components/icons/icons.twig' with { icon: leftButton } only %}
@@ -108,11 +108,11 @@
             {% include '/components/icons/icons.twig' with { icon: rightButton } only %}
           </button>
         {% endif %}
-        <div class="field-icon">
-          {% if ri == true %}
-            {% include '/components/icons/icons.twig' with { icon: rightIcon } only %}
-          {% endif %}
+        {% if ri == true %}
+        <div class="field-icon">          
+          {% include '/components/icons/icons.twig' with { icon: rightIcon } only %}
         </div>
+         {% endif %}
       </div>  
     {% endif %}
     
