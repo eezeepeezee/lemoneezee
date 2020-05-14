@@ -6,7 +6,26 @@
   {% set fieldInputClass = ' ' ~ fieldInputClass %}
 {% endif %}
 
-<div class="form-field{{ formFieldClass }}">
+{% if type == 'text' or type == 'password' or type == 'tel' or type == 'email' or type == 'textarea' %}
+  {% if leftIcon is defined and leftIcon != '' %}
+    {% set paddingClass = paddingClass ~ ' f--li' %}
+    {% set li = true %}
+  {% endif %}
+  {% if leftButton is defined and leftButton != '' %}
+    {% set paddingClass = paddingClass ~ ' f--lb' %}
+    {% set lb = true %}
+  {% endif %}
+  {% if rightIcon is defined and rightIcon != '' %}
+    {% set paddingClass = paddingClass ~ ' f--ri' %}
+    {% set ri = true %}
+  {% endif %}
+  {% if rightButton is defined and rightButton != '' %}
+    {% set paddingClass = paddingClass ~ ' f--rb' %}
+    {% set rb = true %}
+  {% endif %}
+{% endif %}
+
+<div class="form-field{{ formFieldClass }}{% if niceLabel == true %} nice-label {% endif %}">
   
   {% if fieldset == true %}
     {% set fs = true %}
@@ -14,7 +33,7 @@
   {% endif %}  
   
   {% if (type != 'checkbox' and type != 'submit') or fs == true or (title is defined and title != '') %}  
-    <div class="field-label">
+    <div class="field-label {% if niceLabel == true %} {{ paddingClass }} {% endif %}">
   {% endif %}
     
     {% if type != 'checkbox' and type != 'submit' %}
@@ -33,33 +52,13 @@
     </div>
   {% endif %}
   
-  {% set fieldInputClass = '' %}
-  {% if type == 'text' or type == 'password' or type == 'tel' or type == 'email' or type == 'textarea' %}
-    {% if leftIcon is defined and leftIcon != '' %}
-      {% set fieldInputClass = fieldInputClass ~ ' f--li' %}
-      {% set li = true %}
-    {% endif %}
-    {% if leftButton is defined and leftButton != '' %}
-      {% set fieldInputClass = fieldInputClass ~ ' f--lb' %}
-      {% set lb = true %}
-    {% endif %}
-    {% if rightIcon is defined and rightIcon != '' %}
-      {% set fieldInputClass = fieldInputClass ~ ' f--ri' %}
-      {% set ri = true %}
-    {% endif %}
-    {% if rightButton is defined and rightButton != '' %}
-      {% set fieldInputClass = fieldInputClass ~ ' f--rb' %}
-      {% set rb = true %}
-    {% endif %}
-  {% endif %}
-  
-  <div class="field-input{{ fieldInputClass }}">    
+  <div class="field-input{{ fieldInputClass }}{{ paddingClass }}">    
    
     {% if type == 'text' or type == 'password' or type == 'tel' or type == 'email' %}
       <input class="{{ class }}" type="{{ type|default('text') }}" placeholder="{{ placeholder }}" name="{{ name }}" id="{{ name }}" value="{{ value }}" {% if showError == true %} aria-describedby="error-{{ name }}" {% endif %} {{- attributes }}>
       
     {% elseif type == 'textarea' %}
-      <textarea name="{{ name }}">{{ value }}</textarea>
+      <textarea class="{{ class }}" placeholder="{{ placeholder }}" name="{{ name }}" id="{{ name }}" {% if showError == true %} aria-describedby="error-{{ name }}" {% endif %} {{- attributes }}>{{ value }}</textarea>
       
     {% elseif type == 'checkbox' %}
      

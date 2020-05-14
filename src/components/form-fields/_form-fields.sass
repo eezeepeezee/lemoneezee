@@ -108,26 +108,6 @@ textarea
     & input
       height: $input-height
       
-    &.f--li input,
-    &.f--lb input,
-    &.f--li textarea,
-    &.f--lb textarea
-      padding-left: $input-height
-      
-    &.f--li.f--lb input,
-    &.f--li.f--lb textarea
-      padding-left: $input-height * 2.25
-      
-    &.f--ri input,
-    &.f--rb input,
-    &.f--ri textarea,
-    &.f--rb textarea  
-      padding-right: $input-height
-      
-    &.f--ri.f--rb input,
-    &.f--ri.f--rb textarea  
-      padding-right: $input-height * 2.25
-      
     & .field-l,
     & .field-r
       position: absolute
@@ -162,4 +142,74 @@ textarea
     min-height: 2rem
     margin-top: space(2)
     color: red
-    outline: 2px solid red
+
+    
+/* Nice label */
+
+.form-field.nice-label
+  
+  & .field-label
+    position: absolute
+    z-index: +1
+    width: 100%
+    height: $input-height
+    padding-bottom: 0
+    padding-left: space(2)
+    padding-right: space(2)
+    display: flex
+    align-items: center
+    pointer-events: none
+    transition: transform 0.2s
+    
+    &.moved
+      transform: translateY(-$input-height / 2)
+      
+      & label
+        background: #fff
+        
+  & input::placeholder,
+  & textarea::placeholder
+    opacity: 0
+    transition: opacity 0.1s
+    
+  & input:focus::placeholder,
+  & textarea:focus::placeholder
+    opacity: 1
+      
+        
+/* Nice label: no-js fix */
+
+html.no-js .form-field.nice-label .field-label
+  transform: translateY(-$input-height / 2)
+  
+  & label
+    background: #fff
+  
+
+/* Paddings on icon and buttons */
+
+.f--li input,
+.f--lb input,
+.f--li textarea,
+.f--lb textarea,
+.f--li.field-label,
+.f--lb.field-label  
+  padding-left: $input-height
+
+.f--li.f--lb input,
+.f--li.f--lb textarea,
+.f--li.f--lb.field-label
+  padding-left: $input-height * 2.25
+
+.f--ri input,
+.f--rb input,
+.f--ri textarea,
+.f--rb textarea,
+.f--ri.field-label,
+.f--rb.field-label  
+  padding-right: $input-height
+
+.f--ri.f--rb input,
+.f--ri.f--rb textarea,
+.f--ri.f--rb.field-label  
+  padding-right: $input-height * 2.25
