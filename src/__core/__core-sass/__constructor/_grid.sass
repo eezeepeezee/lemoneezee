@@ -95,6 +95,7 @@ body
   width: 100%
   min-height: 100%
   margin: 0 auto
+  overflow-x: hidden
   @if $wrapper-gutters != false
     +layout-gutters($wrapper-gutters)
   @if $fix-wrapper-width != false
@@ -116,9 +117,7 @@ body
     +layout-gutters($container-gutters)
   @if $container-default-margin-y != false
     @each $size, $type in $container-default-margin-y
-      +margin($size, $type)
-  @if $col-gutters != false
-    //overflow: hidden
+      +margin($type, $size)
     
     
 /* Row */   
@@ -142,7 +141,7 @@ body
     +layout-gutters($row-gutters)
   @if $row-default-margin-y != false
     @each $size, $type in $row-default-margin-y
-      +margin($size, $type)
+      +margin($type, $size)
        
       
 /* Width for different types of .col-*-*. I will probably never write this once again. */
@@ -316,7 +315,7 @@ $map-partials: (1: 'full', 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: '
 @if $col-default-margin-y != false
   *[class*='col-']
     @each $size, $type in $col-default-margin-y
-      +margin($size, $type)
+      +margin($type, $size)
         
              
 /* Paddings setup for .col-*-* */
@@ -324,7 +323,7 @@ $map-partials: (1: 'full', 2: 'half', 3: 'third', 4: 'quarter', 5: 'fifth', 6: '
 @if $default-col-padding != false
   *[class*='col-']
     @each $size, $type in $default-col-padding
-      +padding($size, $type)
+      +padding($type, $size)
       
       
 /* Z-index for overflowing .container and .row outlines and IE 11 bug with complex property */

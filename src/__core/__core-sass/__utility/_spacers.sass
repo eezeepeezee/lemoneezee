@@ -34,17 +34,17 @@
 
 @each $spacer-name, $spacer-value in $map-spacers
   .mx-#{$spacer-name}
-    +margin($spacer-name, x)
+    +margin(x, $spacer-name)
   .my-#{$spacer-name}
-    +margin($spacer-name, y)
+    +margin(y, $spacer-name)
   .mt-#{$spacer-name}
-    +margin($spacer-name, t)
+    +margin(t, $spacer-name)
   .mb-#{$spacer-name}
-    +margin($spacer-name, b)
+    +margin(b, $spacer-name)
   .ml-#{$spacer-name}
-    +margin($spacer-name, l)    
+    +margin(l, $spacer-name)    
   .mr-#{$spacer-name}
-    +margin($spacer-name, r)
+    +margin(r, $spacer-name)
   .m-#{$spacer-name}
     +margin($spacer-name)
 
@@ -79,20 +79,20 @@
 
 @each $spacer-name, $spacer-value in $map-spacers
   .pst-#{$spacer-name}
-    +padding($spacer-name, stretch)
+    +padding(stretch, $spacer-name)
   .psq-#{$spacer-name}
-    +padding($spacer-name, squish)
+    +padding(squish, $spacer-name)
   .px-#{$spacer-name}
-    +padding($spacer-name, x)
+    +padding(x, $spacer-name)
   .py-#{$spacer-name}
-    +padding($spacer-name, y)
+    +padding(y, $spacer-name)
   .pt-#{$spacer-name}
-    +padding($spacer-name, t)
+    +padding(t, $spacer-name)
   .pb-#{$spacer-name}
-    +padding($spacer-name, b)
+    +padding(b, $spacer-name)
   .pl-#{$spacer-name}
-    +padding($spacer-name, l)    
+    +padding(l, $spacer-name)    
   .pr-#{$spacer-name}
-    +padding($spacer-name, r)
+    +padding(r, $spacer-name)
   .p-#{$spacer-name}
     +padding($spacer-name)

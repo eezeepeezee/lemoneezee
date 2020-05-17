@@ -21,7 +21,7 @@
 
 /* Margins and paddings, but don't use it for .wrapper and .container */
     
-=margin-prepare($space, $type)
+=margin-prepare($type, $space)
   $space: space($space)
   @if $type == x
     margin-left: $space
@@ -40,19 +40,19 @@
   @else
     margin: $space $space  
 
-=margin($size: a, $type: b)
+=margin($type: b, $size: a)
   $basic-space: map-get($map-spacers, $size)
   @each $bpt, $space in $basic-space
     @if $bpt == $bpt_first
-      +margin-prepare($space, $type)
+      +margin-prepare($type, $space)
     @else
       +screen($bpt)
-        +margin-prepare($space, $type)
+        +margin-prepare($type, $space)
       
       
 /* Type 'stretch' is good for horizontally grown element, 'squish' — for vertically grown */      
       
-=padding-prepare($space, $type)
+=padding-prepare($type, $space)
   $space: space($space)
   @if $type == stretch
     padding: ($space / 2) $space
@@ -75,11 +75,11 @@
   @else
     padding: $space $space  
     
-=padding($size: a, $type: square)
+=padding($type: square, $size: a)
   $basic-space: map-get($map-spacers, $size)
   @each $bpt, $space in $basic-space
     @if $bpt == $bpt_first
-      +padding-prepare($space, $type)
+      +padding-prepare($type, $space)
     @else
       +screen($bpt)
-        +padding-prepare($space, $type)
+        +padding-prepare($type, $space)
