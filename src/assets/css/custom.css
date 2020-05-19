@@ -1,0 +1,565 @@
+@charset "UTF-8";
+/* *
+ *
+ * Generate custom styles to assets/custom.css
+ *
+ * */
+/* Import settings */
+/* Automatically generate upon config.json */
+/* Colors */
+/* Grid */
+/* Spacers */
+/* Typography */
+/* Import global functions and mixins */
+/* *
+ *
+ * Global functions and mixins to operate with colors
+ *
+ * */
+/* Functions ---------------------------------------------------------------------------------------*/
+/* Returns css var according to color scheme. Fallback is defined in config.json */
+/* Mixins ------------------------------------------------------------------------------------------*/
+/* *
+ *
+ * Global functions and mixins to assist working with grid or other layout elements
+ *
+ * */
+/* Functions ---------------------------------------------------------------------------------------*/
+/* Mixins ------------------------------------------------------------------------------------------*/
+/* Media queries
+ *
+ * Example: 'md' breakpoint = 768px, 'lg' = 992px, so:
+ *
+ * +screen(md)       —   768px   <=   screen                    // so it starts FROM md and higher
+ * +screen-max(md)   —   0       <    screen   <=   991px      // so it is from 0 up to INCLUDING MD
+ * +screen-only(md)  —   768px   <=   screen   <=   991px
+ *
+ * */
+/* Portrait and Landscape screens */
+/* IE and Edge */
+/* *
+ *
+ * Hide content. With option 'only' works only on exact breakpoint. Option 'only' can have any value, e.g. '+hide(sm, any word)'
+ *
+ * */
+/* *
+ *
+ * Keep fixed width for .col-*-* at minimum breakpoint width.
+ * Use for first col in row only!
+ *
+ * */
+/* Floats for .col-*-* */
+/* *
+ *
+ * Global functions and mixins for keeping margins in paddings in one size system
+ *
+ * */
+/* Functions ---------------------------------------------------------------------------------------*/
+/* *
+ *
+ * Returns calculated space based on $spacer (8px by default).
+ * Shoule be used carefully when predefined margins and paddings are not enough
+ *
+ * */
+/* Mixins ------------------------------------------------------------------------------------------*/
+/* Margins and paddings, but don't use it for .wrapper and .container */
+/* Type 'stretch' is good for horizontally grown element, 'squish' — for vertically grown */
+/* *
+ *
+ * Global functions and mixins for typography.
+ * Multipliers for functions should be quarters or at least halfs (1.25, 1.5) to keep the rhythm.
+ * But at the end of the day it is already a part of design so it is totally up to you
+ *
+ * */
+/* Functions ---------------------------------------------------------------------------------------*/
+/* Returns calculated font-size based on 'font-size-base' in config.json */
+/* Returns calculated line-height based on 'line-height-base' in config.json  */
+/* Mixins ------------------------------------------------------------------------------------------*/
+/* Import custom styles for components, layouts and pages */
+/* Define basic button styles, which don't depend on sizes */
+.button {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  line-height: 150%;
+  vertical-align: top;
+  border: 0;
+  border-radius: 4px;
+  outline: 0;
+  cursor: pointer;
+  -webkit-transform-origin: center center;
+      -ms-transform-origin: center center;
+          transform-origin: center center;
+  -webkit-transition: all 0.05s;
+  -o-transition: all 0.05s;
+  transition: all 0.05s;
+  background: #ccc;
+  /* Styling according to the "default" color scheme. Affects on svg icons too */
+  /* Creates classes like .button--COLORNAME */
+  /* Button States */
+  /* Loading class */ }
+  .button--icon-only {
+    padding: 0;
+    overflow: hidden; }
+  .button--icon > .icon,
+  .button--icon-only > .icon {
+    position: absolute;
+    top: 50%; }
+  .button--icon-only > .icon {
+    left: 50%; }
+  .button--round.button--icon-only {
+    border-radius: 50%; }
+  .button > span.desc {
+    display: block;
+    font-size: 0.75em; }
+  .button[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.85; }
+    .button[disabled] > .icon {
+      opacity: 0.5; }
+  .button--brand {
+    background: rgba(var(--c-brand), 1);
+    color: #000; }
+    .button--brand svg {
+      fill: #000; }
+  .button--accent {
+    background: rgba(var(--c-accent), 1);
+    color: #000; }
+    .button--accent svg {
+      fill: #000; }
+  .button--success {
+    background: rgba(var(--c-success), 1);
+    color: #000; }
+    .button--success svg {
+      fill: #000; }
+  .button--warning {
+    background: rgba(var(--c-warning), 1);
+    color: #000; }
+    .button--warning svg {
+      fill: #000; }
+  .button--danger {
+    background: rgba(var(--c-danger), 1);
+    color: #000; }
+    .button--danger svg {
+      fill: #000; }
+  .button--info {
+    background: rgba(var(--c-info), 1);
+    color: #000; }
+    .button--info svg {
+      fill: #000; }
+  .button--interactive {
+    background: rgba(var(--c-interactive), 1);
+    color: #000; }
+    .button--interactive svg {
+      fill: #000; }
+  .button:hover, .button:active {
+    color: #000; }
+  .button:hover {
+    -webkit-box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 1px 2px rgba(0, 0, 0, 0.1); }
+  .button:active {
+    -webkit-box-shadow: inset 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 2px 2px 2px rgba(0, 0, 0, 0.1); }
+  .button:focus {
+    -webkit-box-shadow: 0 0 1px 2px rgba(var(--c-interactive), 1);
+            box-shadow: 0 0 1px 2px rgba(var(--c-interactive), 1); }
+  .button:active:focus {
+    -webkit-box-shadow: 0 0 1px 2px rgba(var(--c-interactive), 1);
+            box-shadow: 0 0 1px 2px rgba(var(--c-interactive), 1);
+    -webkit-box-shadow: inset 0 2px 2px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: inset 0 2px 2px 2px rgba(0, 0, 0, 0.1); }
+  .button.loading {
+    visibility: hidden; }
+    .button.loading::after {
+      visibility: visible;
+      display: block;
+      position: absolute;
+      content: '';
+      width: 32px;
+      height: 32px;
+      top: 50%;
+      left: 50%;
+      margin-top: -16px;
+      margin-left: -16px;
+      border-radius: 50%;
+      border: 2px solid rgba(var(--c-black), 1);
+      border-top: 2px solid rgba(var(--c-white), 1);
+      -webkit-animation: loading-spin 1s infinite linear;
+              animation: loading-spin 1s infinite linear; }
+
+@-webkit-keyframes loading-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes loading-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+/* Create button sizes. First in the map should be an empty key like ('': 2), others with '--' prefix like ('--small': 1) */
+/* Font-size cannot be less than $font-size-base (basically 1rem), so it is checking it */
+.button {
+  font-size: 16px;
+  padding: 16px 24px; }
+  .button.button--icon {
+    padding-left: 80px; }
+  .button.button--icon-only {
+    height: 56px;
+    width: 56px; }
+  .button.button--icon > .icon,
+  .button.button--icon-only > .icon {
+    width: 32px;
+    height: 32px;
+    margin-top: -16px; }
+  .button.button--icon > .icon {
+    left: 24px; }
+  .button.button--icon-only > .icon {
+    left: 50%;
+    margin-left: -16px; }
+
+.button--small {
+  font-size: 12px;
+  padding: 12px 18px; }
+  .button--small.button--icon {
+    padding-left: 60px; }
+  .button--small.button--icon-only {
+    height: 42px;
+    width: 42px; }
+  .button--small.button--icon > .icon,
+  .button--small.button--icon-only > .icon {
+    width: 24px;
+    height: 24px;
+    margin-top: -12px; }
+  .button--small.button--icon > .icon {
+    left: 18px; }
+  .button--small.button--icon-only > .icon {
+    left: 50%;
+    margin-left: -12px; }
+
+.button--large {
+  font-size: 24px;
+  padding: 24px 36px; }
+  .button--large.button--icon {
+    padding-left: 120px; }
+  .button--large.button--icon-only {
+    height: 84px;
+    width: 84px; }
+  .button--large.button--icon > .icon,
+  .button--large.button--icon-only > .icon {
+    width: 48px;
+    height: 48px;
+    margin-top: -24px; }
+  .button--large.button--icon > .icon {
+    left: 36px; }
+  .button--large.button--icon-only > .icon {
+    left: 50%;
+    margin-left: -24px; }
+
+/* Form elements rules */
+/* We need to keep semantic of a fieldset, but get rid of styling */
+fieldset {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+/* Reset form properties */
+form {
+  width: 100%; }
+
+/* Custom checkboxes */
+.label--checkbox {
+  position: relative;
+  display: block;
+  height: 2rem;
+  padding-left: 32px;
+  cursor: pointer; }
+
+input[type="checkbox"] + .checkbox {
+  content: '';
+  position: absolute;
+  left: 0.1em;
+  top: 0.2em;
+  width: 1em;
+  height: 1em;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 0 0 0 0.1em #ccc;
+          box-shadow: 0 0 0 0.1em #ccc;
+  background: #fff;
+  pointer-events: none; }
+  input[type="checkbox"] + .checkbox span.icon {
+    top: 0;
+    width: inherit;
+    height: inherit;
+    visibility: hidden; }
+
+input[type="checkbox"]:checked + .checkbox {
+  -webkit-box-shadow: 0 0 0 0.1em #8d8d8d;
+          box-shadow: 0 0 0 0.1em #8d8d8d; }
+  input[type="checkbox"]:checked + .checkbox span.icon {
+    visibility: visible; }
+
+input[type="checkbox"]:focus + .checkbox,
+input[type="checkbox"]:focus:checked + .checkbox {
+  -webkit-box-shadow: 0 0 0 0.1em #8d8d8d, 0 0 0 0.2em #4460ff;
+          box-shadow: 0 0 0 0.1em #8d8d8d, 0 0 0 0.2em #4460ff; }
+
+input[type="checkbox"]:disabled + .checkbox {
+  -webkit-box-shadow: 0 0 0 0.1em #e2e2e2;
+          box-shadow: 0 0 0 0.1em #e2e2e2; }
+
+input[type="checkbox"]:disabled:checked + .checkbox span.icon svg.icon__svg {
+  fill: #e2e2e2; }
+
+/* Text inputs */
+input[type="email"],
+input[type="file"],
+input[type="image"],
+input[type="password"],
+input[type="range"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"] {
+  width: 100%; }
+
+input {
+  position: relative;
+  height: 48px;
+  padding: 0 16px; }
+
+textarea {
+  width: 100%;
+  height: 16rem;
+  line-height: 2rem;
+  padding: 1rem 16px;
+  resize: none; }
+
+/* Form field */
+.form-field {
+  padding: 0;
+  margin-bottom: 32px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  .form-field .field-label {
+    padding-bottom: 16px; }
+  .form-field .field-input {
+    position: relative; }
+    .form-field .field-input input {
+      height: 4rem; }
+    .form-field .field-input .field-l,
+    .form-field .field-input .field-r {
+      position: absolute;
+      top: 0; }
+      .form-field .field-input .field-l .field-icon,
+      .form-field .field-input .field-l .field-button,
+      .form-field .field-input .field-r .field-icon,
+      .form-field .field-input .field-r .field-button {
+        position: relative;
+        margin: 0;
+        width: 4rem;
+        height: 4rem;
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center; }
+        .form-field .field-input .field-l .field-icon span.icon,
+        .form-field .field-input .field-l .field-button span.icon,
+        .form-field .field-input .field-r .field-icon span.icon,
+        .form-field .field-input .field-r .field-button span.icon {
+          width: 3rem;
+          height: 3rem; }
+      .form-field .field-input .field-l .field-button,
+      .form-field .field-input .field-r .field-button {
+        border: 0;
+        background: none;
+        cursor: pointer; }
+    .form-field .field-input .field-l {
+      left: 0; }
+    .form-field .field-input .field-r {
+      right: 0; }
+  .form-field .field-error {
+    min-height: 2rem;
+    margin-top: 16px;
+    color: red; }
+
+/* Nice label */
+.form-field.nice-label .field-label {
+  position: absolute;
+  z-index: +1;
+  width: 100%;
+  height: 4rem;
+  padding-bottom: 0;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  pointer-events: none;
+  -webkit-transition: -webkit-transform 0.2s;
+  transition: -webkit-transform 0.2s;
+  -o-transition: transform 0.2s;
+  transition: transform 0.2s;
+  transition: transform 0.2s, -webkit-transform 0.2s; }
+  .form-field.nice-label .field-label.moved {
+    -webkit-transform: translateY(-2rem);
+        -ms-transform: translateY(-2rem);
+            transform: translateY(-2rem); }
+    .form-field.nice-label .field-label.moved label {
+      background: #fff; }
+
+.form-field.nice-label input::-webkit-input-placeholder, .form-field.nice-label textarea::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.1s;
+  transition: opacity 0.1s; }
+
+.form-field.nice-label input::-moz-placeholder, .form-field.nice-label textarea::-moz-placeholder {
+  opacity: 0;
+  -moz-transition: opacity 0.1s;
+  transition: opacity 0.1s; }
+
+.form-field.nice-label input:-ms-input-placeholder, .form-field.nice-label textarea:-ms-input-placeholder {
+  opacity: 0;
+  -ms-transition: opacity 0.1s;
+  transition: opacity 0.1s; }
+
+.form-field.nice-label input::-ms-input-placeholder, .form-field.nice-label textarea::-ms-input-placeholder {
+  opacity: 0;
+  -ms-transition: opacity 0.1s;
+  transition: opacity 0.1s; }
+
+.form-field.nice-label input::placeholder,
+.form-field.nice-label textarea::placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.1s;
+  -o-transition: opacity 0.1s;
+  transition: opacity 0.1s; }
+
+.form-field.nice-label input:focus::-webkit-input-placeholder, .form-field.nice-label textarea:focus::-webkit-input-placeholder {
+  opacity: 1; }
+
+.form-field.nice-label input:focus::-moz-placeholder, .form-field.nice-label textarea:focus::-moz-placeholder {
+  opacity: 1; }
+
+.form-field.nice-label input:focus:-ms-input-placeholder, .form-field.nice-label textarea:focus:-ms-input-placeholder {
+  opacity: 1; }
+
+.form-field.nice-label input:focus::-ms-input-placeholder, .form-field.nice-label textarea:focus::-ms-input-placeholder {
+  opacity: 1; }
+
+.form-field.nice-label input:focus::placeholder,
+.form-field.nice-label textarea:focus::placeholder {
+  opacity: 1; }
+
+/* Nice label: no-js fix */
+html.no-js .form-field.nice-label .field-label {
+  -webkit-transform: translateY(-2rem);
+      -ms-transform: translateY(-2rem);
+          transform: translateY(-2rem); }
+  html.no-js .form-field.nice-label .field-label label {
+    background: #fff; }
+
+/* Paddings on icon and buttons */
+.f--li input,
+.f--lb input,
+.f--li textarea,
+.f--lb textarea,
+.field-label.f--li,
+.field-label.f--lb {
+  padding-left: 4rem !important; }
+
+.f--li.f--lb input,
+.f--li.f--lb textarea,
+.field-label.f--li.f--lb {
+  padding-left: 9rem !important; }
+
+.f--ri input,
+.f--rb input,
+.f--ri textarea,
+.f--rb textarea,
+.field-label.f--ri,
+.field-label.f--rb {
+  padding-right: 4rem !important; }
+
+.f--ri.f--rb input,
+.f--ri.f--rb textarea,
+.field-label.f--ri.f--rb {
+  padding-right: 9rem !important; }
+
+.icon {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  /* Styling according to "default" color scheme */
+  /* Creates classes like .icon--COLORNAME */ }
+  .icon__svg {
+    display: block;
+    width: inherit;
+    height: inherit;
+    fill: #000; }
+  .icon--empty {
+    border-radius: 50%;
+    background: #ddd; }
+  .icon--brand .icon__svg {
+    fill: rgba(var(--c-brand), 1); }
+  .icon--accent .icon__svg {
+    fill: rgba(var(--c-accent), 1); }
+  .icon--success .icon__svg {
+    fill: rgba(var(--c-success), 1); }
+  .icon--warning .icon__svg {
+    fill: rgba(var(--c-warning), 1); }
+  .icon--danger .icon__svg {
+    fill: rgba(var(--c-danger), 1); }
+  .icon--info .icon__svg {
+    fill: rgba(var(--c-info), 1); }
+  .icon--interactive .icon__svg {
+    fill: rgba(var(--c-interactive), 1); }
+
+body {
+  background: rgba(var(--c-accent), 1);
+  color: red;
+  font-size: 100rem; }
+
+body {
+  background: navy;
+  color: lightblue;
+  font-size: 1rem;
+  line-height: 1rem; }
+
+/*# sourceMappingURL=maps/custom.css.map */
