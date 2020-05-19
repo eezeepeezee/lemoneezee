@@ -4,12 +4,12 @@ todo/
 
 # all the items listed below are generated on every gulp runapp, so no need to keep them in repo
 src/__core/__config/_config.sass
-src/assets/css/libs/normalize.min.css
+src/assets/css/libs/normalize.css
 src/assets/css/maps/
-src/assets/css/color-vars.min.css
-src/assets/css/common.min.css
-src/assets/css/layout-helpers.min.css
+src/assets/css/color-vars.css
+src/assets/css/common.css
+src/assets/css/layout-helpers.css
 src/assets/js/maps/
-src/assets/js/common.min.js
-src/assets/js/components.min.js
+src/assets/js/common.js
+src/assets/js/components.js
 src/*.html
