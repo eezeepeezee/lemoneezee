@@ -134,6 +134,7 @@ function htmlCompileAll() {
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(data(() => readYaml.sync(configGlobal)))
     .pipe(twig({ base: 'src/' }))
+    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('src'));    
 }
 
@@ -147,6 +148,7 @@ function htmlCompileChanged() {
     .pipe(plumber({ handleError(err) { console.log(err); this.emit('end'); } }))
     .pipe(data(() => readYaml.sync(configGlobal)))
     .pipe(twig({ base: 'src/' }))
+    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(gulp.dest('src'));
 }
 
