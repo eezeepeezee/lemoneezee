@@ -72,6 +72,7 @@ Output:
       fieldInputClass: 'field-input--colored',
       name: 'username',
       label: 'What is your name?',
+      niceLabel: true,
       type: 'text',
       placeholder: 'Write your name and lastname',
       class: 'super-input',
