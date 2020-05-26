@@ -296,11 +296,11 @@ function buildHtml() {
   return gulp
     .src(['src/*.html'])
     .pipe(replace(
-      /<!-- inject:css -->(.*?(\r?\n))+.*?(css">)(\r?\n)?<!-- endinject -->/g,
+      /<!-- inject:css -->(.*)(.css">)<!-- endinject -->/g,
       '<link rel="stylesheet" href="/assets/css/libs.min.css">\r\n<link rel="stylesheet" href="/assets/css/common.min.css">\r\n<script>if(\'CSS\' in window&&CSS.supports(\'color\',\'var(--color-var)\')){}else{document.write(\'<link rel="stylesheet" href="/assets/css/common.default.min.css">\')}</script>\r\n<noscript><link rel="stylesheet" href="/assets/css/common.default.min.css"></noscript>',
     ))
     .pipe(replace(
-      /<!-- inject:js -->(.*?(\r?\n))+.*?(script>)(\r?\n)?<!-- endinject -->/g,
+      /<!-- inject:js -->(.*)<!-- endinject -->/g,
       '<script src="/assets/js/libs.min.js"></script>\r\n<script src="/assets/js/common.min.js"></script>\r\n<script src="/assets/js/components.min.js"></script>',
     ))
     .pipe(htmlMin({ collapseWhitespace: true }))

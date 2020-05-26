@@ -8,6 +8,7 @@ src/assets/css/libs/normalize.css
 src/assets/css/maps/
 src/assets/css/color-vars.css
 src/assets/css/common.css
+src/assets/css/custom.css
 src/assets/css/layout-helpers.css
 src/assets/js/maps/
 src/assets/js/common.js
