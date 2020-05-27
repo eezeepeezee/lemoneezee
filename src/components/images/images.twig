@@ -1,0 +1,161 @@
+{% set bptsMax = {} %}
+{% set bptsValues = [] %}
+{% for key, value in grid.breakpoints %}
+  {% set bptsValues = bptsValues|merge([(value)]) %}
+{% endfor %}
+{% for key, value in grid.breakpoints %}
+  {% if loop.index == loop.length %}
+    {% set bptsMax = bptsMax|merge({(key): 99999}) %}
+  {% else %}
+    {% set bptsValue = (bptsValues[loop.index]) - 1 %}
+    {% set bptsMax = bptsMax|merge({(key): (bptsValue)})%}
+  {% endif %}
+{% endfor %}
+
+{% if figcaption is defined %}<figure>{% endif %}
+{% if webp == true or sourceType == 'art' or sourceType == 'sizes' %}
+<picture>
+    {%- if sourceType == 'art' or sourceType == 'sizes' -%}     
+      {%- if sourceType == 'art' -%}
+        {%- if webp == true -%}
+          {%- for sourceSetItem in sourceSet %}
+          {{}}
+          <source
+            {%- if loop.last == false %}
+            media="(max-width: {{ attribute(bptsMax, sourceSetItem.bpt) }}px)" 
+            {% if 'lazyload' in class %}data-{% endif %}sizes="
+              {%- if sourceSetItem.w is defined and sourceSetItem.w != '' -%} 
+                {{ sourceSetItem.w }}vw
+              {%- else %}
+                100vw
+              {%- endif -%}              
+            "{{}} 
+            {% else %}
+            {% if 'lazyload' in class %}data-{% endif %}sizes="100vw"
+            {% endif -%}
+            {% if 'lazyload' in class %}data-{% endif %}srcset="
+            {%- if sourceSetItem.suffix is defined and sourceSetItem.suffix != '' %}
+              {%- set imgSrc = src ~ '_' ~ sourceSetItem.suffix %}
+            {%- else %}
+              {%- set imgSrc = src -%}
+            {%- endif -%}
+            {%- for srcsetItem in sourceSetItem.srcset -%}
+              ./assets/img/{{ imgSrc }}_{{ srcsetItem }}.webp {{ srcsetItem }}w{% if loop.last == false %}, {% endif %}
+            {%- endfor -%}
+            ">          
+          {% endfor -%}        
+        {% endif -%}
+        {%- for sourceSetItem in sourceSet %}
+          {%- if loop.last == false %}         
+          <source
+            media="(max-width: {{ attribute(bptsMax, sourceSetItem.bpt) }}px)" 
+            {% if 'lazyload' in class %}data-{% endif %}sizes="
+              {%- if sourceSetItem.w is defined and sourceSetItem.w != '' -%} 
+                {{ sourceSetItem.w }}vw
+              {%- else -%}
+                100vw
+              {%- endif -%}              
+            "            
+            {% if 'lazyload' in class %}data-{% endif %}srcset="
+              {%- if sourceSetItem.suffix is defined and sourceSetItem.suffix != '' -%}
+                {% set imgSrc = src ~ '_' ~ sourceSetItem.suffix %}
+              {%- else %}
+                {% set imgSrc = src %}
+              {% endif %}
+              {%- for srcsetItem in sourceSetItem.srcset -%}
+                ./assets/img/{{ imgSrc }}_{{ srcsetItem }}.{{ type }} {{ srcsetItem }}w{% if loop.last == false %}, {% endif %}{% endfor -%}">
+
+          {% endif -%}          
+        {% endfor -%} 
+      {% elseif sourceType == 'sizes' and webp == true %}
+          <source
+            {% if 'lazyload' in class %}data-{% endif %}sizes="{% for sourceSetItem in sourceSet -%}
+                  {%- if sourceSetItem.bpt is defined and sourceSetItem.bpt != '' -%} 
+                    (max-width: {{ attribute(bptsMax, sourceSetItem.bpt) }}px){{ ' ' }} 
+                  {%- endif -%}
+                  {%- if sourceSetItem.w is defined and sourceSetItem.w != '' -%} 
+                    {{ sourceSetItem.w }}vw
+                  {%- else -%}
+                    100vw
+                  {%- endif -%}
+                  {% if loop.last == false %}, {% endif %}           
+                {%- endfor -%}        
+            "            
+            {{}}
+            {% if 'lazyload' in class %}data-{% endif %}srcset="
+              {%- for srcsetItem in srcset -%}
+                ./assets/img/{{ src }}_{{ srcsetItem }}.webp {{ srcsetItem }}w{% if loop.last == false %}, {% endif %}
+              {%- endfor -%}
+            " 
+            type="image/webp">    
+      {% endif -%}
+    {%- else -%}
+          {{}}
+          <source
+            {% if 'lazyload' in class %}data-{% endif %}srcset="./assets/img/{{ src }}.webp"
+            type="image/webp">
+    {%- endif -%}
+    {% if sourceType == 'sizes' -%}
+      {% set imgSrc = src ~ '_' ~ srcset|last -%}
+    {% elseif sourceType == 'art' -%}
+      {% set imgSrc = src ~ '_' ~ ((sourceSet|last).srcset)|last -%}
+    {% else -%}
+      {% set imgSrc = src -%}
+    {% endif -%}
+          {{ }}
+          {{ }} 
+          <img
+          {%- if sourceType == 'sizes' %}
+            {% if 'lazyload' in class %}data-{% endif %}sizes="{% for sourceSetItem in sourceSet -%}
+                  {%- if sourceSetItem.bpt is defined and sourceSetItem.bpt != '' -%} 
+                    (max-width: {{ attribute(bptsMax, sourceSetItem.bpt) }}px){{ ' ' }} 
+                  {%- endif -%}
+                  {%- if sourceSetItem.w is defined and sourceSetItem.w != '' -%} 
+                    {{ sourceSetItem.w }}vw
+                  {%- else -%}
+                    100vw
+                  {%- endif -%}
+                  {% if loop.last == false %}, {% endif %}           
+                {%- endfor -%}        
+            " 
+            {% if 'lazyload' in class %}data-{% endif %}srcset="
+                {%- for srcsetItem in srcset -%}
+                  ./assets/img/{{ src }}_{{ srcsetItem }}.{{ type }} {{ srcsetItem }}w{% if loop.last == false %}, {% endif %}
+                {%- endfor -%}        
+            " 
+          {% elseif sourceType == 'art'%}
+            {% if 'lazyload' in class %}data-{% endif %}sizes="{{ (sourceSet|last).w }}vw" 
+            {% if 'lazyload' in class %}data-{% endif %}srcset="
+              {%- set srcset = (sourceSet|last).srcset %}
+              {%- for srcsetItem in srcset -%}
+                ./assets/img/{{ src }}_{{ srcsetItem }}.{{ type }} {{ srcsetItem }}w{% if loop.last == false %}, {% endif %}{% endfor -%}"
+          {% endif %}
+            {% if 'lazyload' in class %}data-{% endif %}src="./assets/img/{{ imgSrc }}.{{ type }}" width="{{ size[0] }}" height="{{ size[1] }}" alt="{{ alt }}" class="{{ class }}" {{ attributes }}>
+        </picture>
+{%- else -%}
+  <img {{ ' ' }}
+          {% if 'lazyload' in class %}data-{% endif %}src="./assets/img/{{ src }}.{{ type }}" width="{{ size[0] }}" height="{{ size[1] }}" alt="{{ alt }}" class="{{ class }}" {{ attributes }}>
+{%- endif -%}
+{% if figcaption is defined %}<figcaption>{{ figcaption }}</figcaption></figure>{% endif %}
+{#
+
+  USAGE
+  
+  {% include '../components/ui/_image/image.twig' with 
+      {
+        src:          'lufthansa',
+        type:         'jpg',
+        size:         [2200, 1467],
+        alt:          'Lufthansa B737',
+        class:        'lazyload',
+        webp:         true,
+        sourceType:   'art',
+        sourceSet:    [
+                        {bpt: 'xs', w: 100, suffix: 'closeup', srcset: [400, 600]},
+                        {w: 100, srcset: [600, 1000, 2200]}
+                      ],
+        srcset:       [600, 1000, 2200]
+      }
+  %}  
+  
+#}

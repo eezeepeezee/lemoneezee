@@ -12,25 +12,22 @@
   <div class="row">
     <div class="col-fluid">
       
-{% include '/components/form-fields/form-fields.twig' with
-    {
-      formFieldClass: 'form-field--general',
-      fieldInputClass: 'field-input--colored',
-      name: 'username',
-      label: 'What is your name?',
-      niceLabel: true,
-      type: 'text',
-      placeholder: 'Write your name and lastname',
-      class: 'super-input',
-      leftIcon: 'user',
-      leftButton: 'eye-open',
-      leftButtonAttributes: 'class="js-type" aria-label="Toggle smth"',
-      rightButton: 'eye-closed',
-      rightIcon: 'lock',
-      rightButtonAttributes: 'class="js-password" aria-label="Toggle password"',
-      showError: true      
-    } only
-%}      
+      {% include '/components/images/images.twig' with 
+          {
+            src:          'lufthansa',
+            type:         'jpg',
+            size:         [2200, 1467],
+            alt:          'Lufthansa B737',
+            class:        'lazyload',
+            webp:         true,
+            sourceType:   'art',
+            sourceSet:    [
+                            {bpt: 'xs', w: 100, suffix: 'closeup', srcset: [400, 600]},
+                            {w: 100, srcset: [600, 1000, 2200]}
+                          ],
+            srcset:       [600, 1000, 2200]
+          }
+      %}       
       
     </div>
   </div>
