@@ -196,7 +196,7 @@ function cssCore() {
     .pipe(sassGlob())
     .pipe(sass({ errLogToConsole: true }))
     .pipe(autoprefixer(['last 10 versions', '> 1%', 'IE 11'], { cascade: true }))
-    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, colormin: false }))
+    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, colormin: false, discardUnused: false }))
     .pipe(gulp.dest(`${paths.src.assets}css/`));
 }
 
@@ -211,7 +211,7 @@ function cssCustom() {
     .pipe(sassGlob())
     .pipe(sass({ errLogToConsole: true }))
     .pipe(autoprefixer(['last 10 versions', '> 1%', 'IE 11'], { cascade: true }))
-    //.pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, colormin: false }))
+    //.pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, colormin: false, discardUnused: false }))
     .pipe(sourcemaps.write('/maps'))
     .pipe(gulp.dest(`${paths.src.assets}css/`));
 }
@@ -316,7 +316,7 @@ function buildCss() {
   const buildCssLibs = gulp
     .src([`${paths.src.assets}css/libs/*.css`])
     .pipe(concat('libs.min.css'))
-    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
+    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, discardUnused: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));
 
 
@@ -325,7 +325,7 @@ function buildCss() {
   const buildCssCommon = gulp
     .src([`${paths.src.assets}css/color-vars.css`, `${paths.src.assets}css/common.css`, `${paths.src.assets}css/custom.css`])
     .pipe(concat('common.min.css'))
-    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
+    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, discardUnused: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));
 
 
@@ -334,7 +334,7 @@ function buildCss() {
   const buildCssSeparate = gulp
     .src([`${paths.src.assets}css/**/*.css`, `!${paths.src.assets}css/libs/*.css`, `!${paths.src.assets}css/color-vars.css`, `!${paths.src.assets}css/common.css`, `!${paths.src.assets}css/custom.css`, `!${paths.src.assets}css/layout-helpers.css`])
     .pipe(rename({ suffix: '.min' }))
-    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false }))
+    .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, discardUnused: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));
 
 
