@@ -9,28 +9,6 @@
       <h1>LemonEezee frontend template</h1>
     </div>
   </div>  
-  <div class="row">
-    <div class="col-fluid">
-      
-      {% include '/components/images/images.twig' with 
-          {
-            src:          'lufthansa',
-            type:         'jpg',
-            size:         [2200, 1467],
-            alt:          'Lufthansa B737',
-            class:        'lazyload',
-            webp:         true,
-            sourceType:   'art',
-            sourceSet:    [
-                            {bpt: 'xs', w: 100, suffix: 'closeup', srcset: [400, 600]},
-                            {w: 100, srcset: [600, 1000, 2200]}
-                          ],
-            srcset:       [600, 1000, 2200]
-          }
-      %}       
-      
-    </div>
-  </div>
 </div>
 
 {% endblock %}
