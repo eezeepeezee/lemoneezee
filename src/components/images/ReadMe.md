@@ -36,7 +36,7 @@ Output:
 
 Twig:
 
-```html
+```twig
 {% include '/components/images/images.twig' with 
     {
       src:    'folder/filename-without-extension',
@@ -54,10 +54,10 @@ Output:
 
 ```html
 <picture>
-	<source srcset="./assets/img/folder/filename-without-extension.webp" 
-		type="image/webp">
-	<img src="./assets/img/folder/filename-without-extension.jpg" 
-		width="" height="" alt="" class="">
+  <source srcset="./assets/img/folder/filename-without-extension.webp" 
+    type="image/webp">
+  <img src="./assets/img/folder/filename-without-extension.jpg" 
+    width="" height="" alt="" class="">
 </picture>
 ```
 
@@ -85,14 +85,14 @@ Output:
 
 ```html
 <picture>
-	<img sizes="" 
-			 srcset="
-				./assets/img/folder/filename-without-extension_600.jpg 600w, 
-				./assets/img/folder/filename-without-extension_1000.jpg 1000w, 
-				./assets/img/folder/filename-without-extension_2200.jpg 2200w" 
-			 src="
-				./assets/img/folder/filename-without-extension_2200.jpg" 
-			 width="" height="" alt="" class="">
+  <img sizes="" 
+    srcset="
+      ./assets/img/folder/filename-without-extension_600.jpg 600w, 
+      ./assets/img/folder/filename-without-extension_1000.jpg 1000w, 
+      ./assets/img/folder/filename-without-extension_2200.jpg 2200w" 
+    src="
+      ./assets/img/folder/filename-without-extension_2200.jpg" 
+    width="" height="" alt="" class="">
 </picture>
 ```
 
@@ -100,19 +100,19 @@ You can set `webp: true` also, so you will get this output then:
 
 ```html
 <picture>
-	<source sizes="" 
-					srcset="
-						./assets/img/folder/filename-without-extension_600.webp 600w, 
-						./assets/img/folder/filename-without-extension_1000.webp 1000w, 
-						./assets/img/folder/filename-without-extension_2200.webp 2200w" 
-					type="image/webp">
+  <source sizes="" 
+    srcset="
+      ./assets/img/folder/filename-without-extension_600.webp 600w, 
+      ./assets/img/folder/filename-without-extension_1000.webp 1000w, 
+      ./assets/img/folder/filename-without-extension_2200.webp 2200w" 
+    type="image/webp">
   <img sizes="" 
-					srcset="
-						./assets/img/folder/filename-without-extension_600.jpg 600w, 
-						./assets/img/folder/filename-without-extension_1000.jpg 1000w, 
-						./assets/img/folder/filename-without-extension_2200.jpg 2200w" 
-					src="./assets/img/folder/filename-without-extension_2200.jpg" 
-				width="" height="" alt="" class="">
+    srcset="
+      ./assets/img/folder/filename-without-extension_600.jpg 600w, 
+      ./assets/img/folder/filename-without-extension_1000.jpg 1000w, 
+      ./assets/img/folder/filename-without-extension_2200.jpg 2200w" 
+    src="./assets/img/folder/filename-without-extension_2200.jpg" 
+    width="" height="" alt="" class="">
 </picture>
 ```
 
@@ -143,15 +143,15 @@ Output:
 
 ```html
 <picture>         
-	<source 
-			media="(max-width: 575px)" 
-			sizes="100vw" 
-			srcset="./assets/img/folder/filename-without-extension_closeup_400.jpg 400w">
+  <source 
+    media="(max-width: 575px)" 
+    sizes="100vw" 
+    srcset="./assets/img/folder/filename-without-extension_closeup_400.jpg 400w">
   <img 
-			sizes="100vw" 
-			srcset="./assets/img/folder/filename-without-extension_600.jpg 600w" 
-			src="./assets/img/folder/filename-without-extension_600.jpg" 
-			width="" height="" alt="" class="">
+    sizes="100vw" 
+    srcset="./assets/img/folder/filename-without-extension_600.jpg 600w" 
+    src="./assets/img/folder/filename-without-extension_600.jpg" 
+    width="" height="" alt="" class="">
 </picture>
 ```
 
@@ -159,22 +159,22 @@ With `webp: true` will look like this:
 
 ```html
 <picture>
-	<source 
-			media="(max-width: 575px)" 
-			sizes="100vw" 
-			srcset="./assets/img/folder/filename-without-extension_closeup_400.webp 400w">
   <source 
-			sizes="100vw" 
-			srcset="./assets/img/folder/filename-without-extension_600.webp 600w">         
+    media="(max-width: 575px)" 
+    sizes="100vw" 
+    srcset="./assets/img/folder/filename-without-extension_closeup_400.webp 400w">
   <source 
-			media="(max-width: 575px)" 
-			sizes="100vw" 
-			srcset="./assets/img/folder/filename-without-extension_closeup_400.jpg 400w">
+    sizes="100vw" 
+    srcset="./assets/img/folder/filename-without-extension_600.webp 600w">         
+  <source 
+    media="(max-width: 575px)" 
+    sizes="100vw" 
+    srcset="./assets/img/folder/filename-without-extension_closeup_400.jpg 400w">
   <img 
-			sizes="100vw" 
-			srcset="./assets/img/folder/filename-without-extension_600.jpg 600w" 
-			src="./assets/img/folder/filename-without-extension_600.jpg" 
-			width="" height="" alt="" class="">
+    sizes="100vw" 
+    srcset="./assets/img/folder/filename-without-extension_600.jpg 600w" 
+    src="./assets/img/folder/filename-without-extension_600.jpg" 
+    width="" height="" alt="" class="">
 </picture>
 ```
 
@@ -208,15 +208,15 @@ Output:
 
 ```html
 <figure>
-	<img 
-		data-src="./assets/img/folder/filename-without-extension.jpg" 
-		width="2200" 
-		height="1467" 
-		alt="Alternative text" 
-		class="lazyloaded" 
-		data-image="my-image" 
-		src="./assets/img/folder/filename-without-extension.jpg">
-	<figcaption>A figcaption for this lovely image</figcaption>
+  <img 
+    data-src="./assets/img/folder/filename-without-extension.jpg" 
+    width="2200" 
+    height="1467" 
+    alt="Alternative text" 
+    class="lazyloaded" 
+    data-image="my-image" 
+    src="./assets/img/folder/filename-without-extension.jpg">
+  <figcaption>A figcaption for this lovely image</figcaption>
 </figure>
 ```
 
@@ -224,19 +224,19 @@ And again with `webp: true` it will look like this:
 
 ```html
 <figure>
-	<picture>
-	  <source 
-			data-srcset="./assets/img/folder/filename-without-extension.webp" 
-			type="image/webp" 
-			srcset="./assets/img/folder/filename-without-extension.webp">
+  <picture>
+    <source 
+      data-srcset="./assets/img/folder/filename-without-extension.webp" 
+      type="image/webp" 
+      srcset="./assets/img/folder/filename-without-extension.webp">
     <img 
-			data-src="./assets/img/folder/filename-without-extension.jpg" 
-			width="2200" height="1467" 
-			alt="Alternative text" 
-			class="lazyloaded" 
-			data-image="my-image" 
-			src="./assets/img/folder/filename-without-extension.jpg">
-	</picture>
-	<figcaption>A figcaption for this lovely image</figcaption>
+      data-src="./assets/img/folder/filename-without-extension.jpg" 
+      width="2200" height="1467" 
+      alt="Alternative text" 
+      class="lazyloaded" 
+      data-image="my-image" 
+      src="./assets/img/folder/filename-without-extension.jpg">
+  </picture>
+  <figcaption>A figcaption for this lovely image</figcaption>
 </figure>
 ```
