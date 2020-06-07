@@ -250,6 +250,10 @@ function jsCustom() {
 
   const jsComponentsSeparate = gulp
     .src([`${paths.src.components}**/%*.js`])
+    .pipe(rename(function(path) {
+        path.dirname  = 'components/';
+        path.basename = path.basename.replace('%', '');
+    }))
     .pipe(babel())
     .pipe(gulp.dest(`${paths.src.assets}js/`));
 
@@ -295,6 +299,7 @@ function buildHtml() {
 
   return gulp
     .src(['src/*.html'])
+    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(replace(
       /<!-- inject:css -->(.*)(.css">)<!-- endinject -->/g,
       '<link rel="stylesheet" href="/assets/css/libs.min.css">\r\n<link rel="stylesheet" href="/assets/css/common.min.css">\r\n<script>if(\'CSS\' in window&&CSS.supports(\'color\',\'var(--color-var)\')){}else{document.write(\'<link rel="stylesheet" href="/assets/css/common.default.min.css">\')}</script>\r\n<noscript><link rel="stylesheet" href="/assets/css/common.default.min.css"></noscript>',
@@ -303,7 +308,6 @@ function buildHtml() {
       /<!-- inject:js -->(.*)<!-- endinject -->/g,
       '<script src="/assets/js/libs.min.js"></script>\r\n<script src="/assets/js/common.min.js"></script>\r\n<script src="/assets/js/components.min.js"></script>',
     ))
-    .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(prettyHtml({ indent_size: 2, end_with_newline: true }))
     .pipe(gulp.dest(paths.build));
 }
@@ -314,7 +318,7 @@ function buildCss() {
   /* Compile all css libs into one */
 
   const buildCssLibs = gulp
-    .src([`${paths.src.assets}css/libs/*.css`])
+    .src([`${paths.src.assets}css/libs/normalize.css`, `${paths.src.assets}css/libs/*.css`])
     .pipe(concat('libs.min.css'))
     .pipe(cssnano({ autoprefixer: false, zindex: false, reduceIdents: false, discardUnused: false }))
     .pipe(gulp.dest(`${paths.build}assets/css/`));

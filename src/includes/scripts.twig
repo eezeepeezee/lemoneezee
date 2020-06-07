@@ -1,4 +1,9 @@
 <!-- inject:js -->
+
+{% for jsFile in jsLibs %}
+<script src="/assets/js/libs/{{ jsFile }}.js"></script>
+{%- endfor -%}
+
 <script src="/__core/__core-js/libs/fastclick.min.js"></script>
 <script src="/__core/__core-js/libs/lazysizes.min.js"></script>
 <script src="/__core/__core-js/libs/picturefill.min.js"></script>
@@ -9,6 +14,6 @@
 <script src="/assets/js/components.js"></script>
 <!-- endinject -->
 
-{% for jsFile in js %}
-<script src="/assets/js/{{ jsFile }}.js"></script>
+{% for jsFile in jsCmps %}
+<script src="/assets/js/components/{{ jsFile }}.js"></script>
 {%- endfor -%}

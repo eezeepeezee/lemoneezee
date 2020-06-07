@@ -12,11 +12,12 @@
 <!-- inject:css -->
 <link rel="stylesheet" href="/assets/css/libs/normalize.css">
 <link rel="stylesheet" href="/assets/css/color-vars.css">
+
+{% for cssFile in cssLibs %}
+<link rel="stylesheet" href="/assets/css/libs/{{ cssFile }}.css">
+{%- endfor %}
+
 <link rel="stylesheet" href="/assets/css/common.css">
 <link rel="stylesheet" href="/assets/css/custom.css">
 <link rel="stylesheet" href="/assets/css/layout-helpers.css">
 <!-- endinject -->
-
-{% for cssFile in css %}
-<link rel="stylesheet" href="/assets/css/{{ cssFile }}.css">
-{%- endfor %}
