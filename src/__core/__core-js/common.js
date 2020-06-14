@@ -37,9 +37,10 @@ window.addEventListener('load', () => {
 
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
     isMobile = true;
+    document.documentElement.classList.add('is-mobile');
+    document.documentElement.setAttribute('data-mobile', 'true');
   }
 
-  
   /* Capturing screen resizing to fire the function if needed */  
 
   let width = window.innerWidth;

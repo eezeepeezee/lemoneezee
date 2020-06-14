@@ -42,7 +42,8 @@
             {%- for srcsetItem in sourceSetItem.srcset -%}
               ./assets/img/{{ imgSrc }}_{{ srcsetItem }}.webp {{ srcsetItem }}w{% if loop.last == false %}, {% endif %}
             {%- endfor -%}
-            ">          
+            "
+            type="image/webp">          
           {% endfor -%}        
         {% endif -%}
         {%- for sourceSetItem in sourceSet %}
@@ -137,3 +138,25 @@
           {% if 'lazyload' in class %}data-{% endif %}src="./assets/img/{{ src }}.{{ type }}" width="{{ size[0] }}" height="{{ size[1] }}" alt="{{ alt }}" class="{{ class }}" {{ attributes }}>
 {%- endif -%}
 {% if figcaption is defined %}<figcaption>{{ figcaption }}</figcaption></figure>{% endif %}
+{#
+
+  USAGE
+  
+  {% include '/components/images/images.twig' with 
+      {
+        src:          'lufthansa',
+        type:         'jpg',
+        size:         [2200, 1467],
+        alt:          'Lufthansa B737',
+        class:        'lazyload',
+        webp:         true,
+        sourceType:   'art',
+        sourceSet:    [
+                        {bpt: 'xs', w: 100, suffix: 'closeup', srcset: [400, 600]},
+                        {w: 100, srcset: [600, 1000, 2200]}
+                      ],
+        srcset:       [600, 1000, 2200]
+      }
+  %}  
+  
+#}
