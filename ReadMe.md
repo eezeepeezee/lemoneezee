@@ -75,6 +75,7 @@ Mostly, individual developers and small teams who don't want to waste time for o
 
 There are some great third-party libraries and technologies which make LemonEezee much more better. 
 
+- [details-element-polyfill](https://github.com/javan/details-element-polyfill) by Javan Makhmali
 - [fastclick](https://github.com/ftlabs/fastclick) by FT Labs
 - [lazysizes](https://github.com/aFarkas/lazysizes) by Alexander Farkas
 - [picturefill](https://github.com/scottjehl/picturefill) by Scott Jehl
