@@ -15,7 +15,7 @@
 
 Parameters:
 
-- `text`: text of the alert. Be careful with tags (<strong></strong>, <em></em>, etc.) because it will break the text into multiple parts in some screenreaders.
+- `text`: text of the alert. Be careful with tags (```<strong></strong>```, ```<em></em>```, etc.) because it will break the text into multiple parts in some screenreaders.
 
 Output:
 
