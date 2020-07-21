@@ -1,0 +1,37 @@
+.alert
+	+margin(y, a)
+	+padding(stretch, b)
+	position: relative
+	display: inline-block
+	line-height: 150%
+	background: color(gray-1)
+	color: color(black)
+	border-radius: 4px
+  
+	& span.icon
+		width: 24px
+		height: 24px
+		margin-right: space(3)
+		position: absolute
+		top: 50%
+		left: 24px
+		margin-top: -12px
+		margin-left: -12px
+
+	&--fullwidth
+		width: 100%
+
+	&--has-icon
+		padding-left: 48px
+
+
+	// Alert styles according to __base/__config/_settings.sass/$map-color-schemes
+	// If needed, define same styles or another ones below      
+
+	@each $c-color-name, $c-color-value in map-get($map-color-schemes, 'default')
+		&--#{$c-color-name}
+			background: color(#{$c-color-name}-l-#{$scheme-adjust-steps})
+			color: color(#{$c-color-name}-d-#{$scheme-adjust-steps})
+
+			& svg
+				fill: color(#{$c-color-name}-d-#{$scheme-adjust-steps})

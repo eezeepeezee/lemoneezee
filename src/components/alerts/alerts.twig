@@ -1,0 +1,31 @@
+{%- if style is defined and style != '' -%}
+	{%- set classCompiled = ' alert--' ~ style -%}
+{%- endif -%}
+
+{%- if icon is defined and icon != '' -%}
+	{%- set classCompiled = classCompiled ~ ' alert--has-icon' -%}
+{%- endif %}
+
+{%- if fullwidth is defined and fullwidth == true -%}
+  {% set classCompiled = classCompiled ~ ' alert--fullwidth' -%}
+{%- endif -%}
+
+{%- if class is defined and class != '' -%}
+  {%- set classCompiled = classCompiled ~ ' ' ~ class -%}
+{%- endif -%}
+
+{%- if role == 'alert' -%}
+  {%- set ariaLive = 'assertive' -%}
+{%- else -%}
+  {%- set ariaLive = 'polite' -%}
+{%- endif %}
+
+<div class="alert{{ classCompiled }}" role="{{ role|default('status') }}" aria-live="{{ ariaLive }}" {{ attributes }}> 
+  {%- if icon is defined and icon != '' -%}
+    <span class="icon">
+      <svg class="icon__svg">
+        <use xlink:href="./assets/img/icons/sprite.svg#{{ icon }}"></use>
+      </svg>  
+    </span>
+  {%- endif -%}
+{{ text }}</div>
