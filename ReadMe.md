@@ -25,20 +25,21 @@ LemonEezee is a fully configurable and not overstyled frontend-template that hel
 Get the repo onto your local machine (or download zip):
 
 ```bash
-git clone https://github.com/eezeepeezee/lemoneezee.git my-awesome-project
+$ git clone https://github.com/eezeepeezee/lemoneezee.git my-awesome-project
 ```
 
 Install npm packages:
 
 ```bash
-cd my-awesome-project
-npm i
+$ cd my-awesome-project
+$ rm -rf .git
+$ npm i
 ```
 
 Start working:
 
 ```bash
-gulp watch
+$ gulp watch
 ```
 
 > While it is still alpha, full manual will be published later.
