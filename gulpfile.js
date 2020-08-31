@@ -253,6 +253,7 @@ function jsCustom() {
     .pipe(rename(function(path) {
         path.dirname  = 'components/';
         path.basename = path.basename.replace('%', '');
+        path.basename += ".min";
     }))
     .pipe(babel())
     .pipe(gulp.dest(`${paths.src.assets}js/`));
@@ -368,17 +369,15 @@ function buildJs() {
   /* Compile all js libs into one */
 
   const buildJsLibs = gulp
-    .src([`${paths.src.__core}__core-js/libs/*.js`, `${paths.src.assets}js/libs/*.js`])
-    .pipe(babel())
+    .src([`${paths.src.__core}__core-js/libs/*.js`, `${paths.src.assets}js/libs/**/*.js`])
     .pipe(concat('libs.min.js'))
-    .pipe(uglify())
     .pipe(gulp.dest(`${paths.build}assets/js/`));
 
 
   /* Compile common.js */
 
   const buildJsCommon = gulp
-    .src([`${paths.src.__core}__core-js/common.js`])
+    .src([`${paths.src.__core}__core-js/common.js`, `${paths.src.assets}js/components.js`])
     .pipe(rename({ suffix: '.min' }))
     .pipe(babel())
     .pipe(uglify())
@@ -388,11 +387,10 @@ function buildJs() {
   /* Compile separate components (everything but libs) */
 
   const buildJsComponents = gulp
-    .src([`${paths.src.assets}js/**/*.js`, `!${paths.src.assets}js/libs/common.js`, `!${paths.src.assets}js/libs/*.js`])
-    .pipe(rename({ suffix: '.min' }))
+    .src([`${paths.src.assets}js/components/*.js`])
     .pipe(babel())
     .pipe(uglify())
-    .pipe(gulp.dest(`${paths.build}assets/js/`));
+    .pipe(gulp.dest(`${paths.build}assets/js/components`));
 
   return merge(buildJsLibs, buildJsCommon, buildJsComponents);
 }
