@@ -1,5 +1,4 @@
 node_modules/
-build/
 todo/
 
 # all the items listed below are generated on every gulp runapp, so no need to keep them in repo

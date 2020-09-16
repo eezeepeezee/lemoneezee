@@ -62,7 +62,7 @@ const paths = {
 function browserSyncInit(done) {
   browserSync.init({
     server: {
-      baseDir: 'src',
+      baseDir: 'src/',
       index: 'src-pages.html',
     },
     notify: false,
@@ -82,7 +82,7 @@ function browserSyncReload(done) {
 function runbuild(done) {
   browserSync.init({
     server: {
-      baseDir: 'build',
+      baseDir: 'build/',
       index: 'src-pages.html',
     },
     notify: false,
@@ -303,11 +303,11 @@ function buildHtml() {
     .pipe(htmlMin({ collapseWhitespace: true }))
     .pipe(replace(
       /<!-- inject:css -->(.*)(.css">)<!-- endinject -->/g,
-      '<link rel="stylesheet" href="/assets/css/libs.min.css">\r\n<link rel="stylesheet" href="/assets/css/common.min.css">\r\n<script>if(\'CSS\' in window&&CSS.supports(\'color\',\'var(--color-var)\')){}else{document.write(\'<link rel="stylesheet" href="/assets/css/common.default.min.css">\')}</script>\r\n<noscript><link rel="stylesheet" href="/assets/css/common.default.min.css"></noscript>',
+      '<link rel="stylesheet" href="assets/css/libs.min.css">\r\n<link rel="stylesheet" href="assets/css/common.min.css">\r\n<script>if(\'CSS\' in window&&CSS.supports(\'color\',\'var(--color-var)\')){}else{document.write(\'<link rel="stylesheet" href="assets/css/common.default.min.css">\')}</script>\r\n<noscript><link rel="stylesheet" href="assets/css/common.default.min.css"></noscript>',
     ))
     .pipe(replace(
       /<!-- inject:js -->(.*)<!-- endinject -->/g,
-      '<script src="/assets/js/libs.min.js"></script>\r\n<script src="/assets/js/common.min.js"></script>\r\n<script src="/assets/js/components.min.js"></script>',
+      '<script src="assets/js/libs.min.js"></script>\r\n<script src="assets/js/common.min.js"></script>\r\n<script src="assets/js/components.min.js"></script>',
     ))
     .pipe(prettyHtml({ indent_size: 2, end_with_newline: true }))
     .pipe(gulp.dest(paths.build));
