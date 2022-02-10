@@ -54,7 +54,7 @@
     "gulp-twig": "^1.2.0",
     "gulp-uglify": "^3.0.2",
     "merge-stream": "^2.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "path": "^0.12.7",
     "read-yaml": "^1.1.0"
   }
